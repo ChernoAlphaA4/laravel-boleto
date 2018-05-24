@@ -62,6 +62,21 @@ abstract class AbstractBoleto implements BoletoContract
      * @var float
      */
     protected $multa = 0;
+
+
+    /**
+     * Codigos do Juros mora
+     * 1 = Valor por dia - Informar no campo o valor/dia a mora a ser cobrada.
+     * 2 = Taxa Mensal - Informar no campo taxa mensal o percentual a ser aplicado sobre valor do titulo que será calculado por dia de atraso.
+     * 3 = Isento
+     * 4 = Utilizar comissão permanência do Banco por dia de atraso
+     * 5 = Tolerância valor por dia (cobrar juros a partir de)
+     * 6 = Tolerância taxa mensal (cobrar juros a partir de)
+     *  Para o código igual 4, o campo “taxa mensal” não deverá conter informação.
+     * @var array
+     */
+    protected $codigoJurosMora;
+
     /**
      * Valor para mora juros
      *
@@ -89,25 +104,25 @@ abstract class AbstractBoleto implements BoletoContract
     /**
      * Data do documento
      *
-     * @var \Carbon\Carbon
+     * @var Carbon
      */
     protected $dataDocumento;
     /**
      * Data de emissão
      *
-     * @var \Carbon\Carbon
+     * @var Carbon
      */
     protected $dataProcessamento;
     /**
      * Data de vencimento
      *
-     * @var \Carbon\Carbon
+     * @var \Carbon
      */
     protected $dataVencimento;
     /**
      * Data de limite de desconto
      *
-     * @var \Carbon\Carbon
+     * @var \Carbon
      */
     protected $dataDesconto;
     /**
@@ -1082,25 +1097,6 @@ abstract class AbstractBoleto implements BoletoContract
     {
         return $this->juros;
     }
-
-    /**
-     * Codigos do Juros mora
-     * 1 = Valor por dia - Informar no campo o valor/dia a mora a ser cobrada.
-     * 2 = Taxa Mensal - Informar no campo taxa mensal o percentual a ser aplicado sobre valor do titulo que será calculado por dia de atraso.
-     * 3 = Isento
-     * 4 = Utilizar comissão permanência do Banco por dia de atraso
-     * 5 = Tolerância valor por dia (cobrar juros a partir de)
-     * 6 = Tolerância taxa mensal (cobrar juros a partir de)
-     *  Para o código igual 4, o campo “taxa mensal” não deverá conter informação.
-     * @var array
-     */
-    protected $codigoJurosMora;
-
-    /**
-     * JurosMora por dia
-     * @var
-     */
-    protected $jurosMoraDia;
 
     /**
      * Retorna o codigo de juros mora

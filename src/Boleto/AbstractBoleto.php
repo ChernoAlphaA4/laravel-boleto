@@ -1084,6 +1084,62 @@ abstract class AbstractBoleto implements BoletoContract
     }
 
     /**
+     * Codigos do Juros mora
+     * 1 = Valor por dia - Informar no campo o valor/dia a mora a ser cobrada.
+     * 2 = Taxa Mensal - Informar no campo taxa mensal o percentual a ser aplicado sobre valor do titulo que será calculado por dia de atraso.
+     * 3 = Isento
+     * 4 = Utilizar comissão permanência do Banco por dia de atraso
+     * 5 = Tolerância valor por dia (cobrar juros a partir de)
+     * 6 = Tolerância taxa mensal (cobrar juros a partir de)
+     *  Para o código igual 4, o campo “taxa mensal” não deverá conter informação.
+     * @var array
+     */
+    protected $codigoJurosMora;
+
+    /**
+     * JurosMora por dia
+     * @var
+     */
+    protected $jurosMoraDia;
+
+    /**
+     * Retorna o juros mora
+     * @return mixed
+     */
+    public function getJurosMoraDia()
+    {
+      return $this->jurosMoraDia;
+    }
+
+    /**
+     * Define o Juros mora por dia
+     * @param mixed $jurosMoraDia
+     */
+    public function setJurosMoraDia($jurosMoraDia)
+    {
+      $this->jurosMoraDia = $jurosMoraDia;
+    }
+
+    /**
+     * Retorna o codigo de juros mora
+     * @return array
+     */
+    public function getCodigoJurosMora(): array
+    {
+      return $this->codigoJurosMora;
+    }
+
+    /**
+     * Define o codigo juros mora
+     * @param array $codigoJurosMora
+     */
+    public function setCodigoJurosMora(array $codigoJurosMora)
+    {
+      $this->codigoJurosMora = $codigoJurosMora;
+    }
+
+
+  /**
      * Retorna valor mora diária
      *
      * @return float

@@ -536,7 +536,7 @@ abstract class AbstractBoleto implements BoletoContract
      *
      * @return AbstractBoleto
      */
-    public function setDataVencimento($dataVencimento)
+    public function setDataVencimento(Carbon $dataVencimento)
     {
         $this->dataVencimento = $dataVencimento;
 
@@ -560,7 +560,7 @@ abstract class AbstractBoleto implements BoletoContract
      *
      * @return AbstractBoleto
      */
-    public function setDataDesconto($dataDesconto)
+    public function setDataDesconto(Carbon $dataDesconto)
     {
         $this->dataDesconto = $dataDesconto;
 
@@ -584,7 +584,7 @@ abstract class AbstractBoleto implements BoletoContract
      *
      * @return AbstractBoleto
      */
-    public function setDataDocumento($dataDocumento)
+    public function setDataDocumento(Carbon $dataDocumento)
     {
         $this->dataDocumento = $dataDocumento;
 

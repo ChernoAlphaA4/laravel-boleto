@@ -1,11 +1,11 @@
 {
-    "name": "Vecsagus/laravel-boleto",
+    "name": "eduardokum/laravel-boleto",
     "description": "Biblioteca com boletos para o laravel",
     "keywords": [
-        "Vecsagus",
+        "eduardokum",
         "laravel-boleto"
     ],
-    "homepage": "https://github.com/Vecsagus/laravel-boleto",
+    "homepage": "https://github.com/eduardokum/laravel-boleto",
     "license": "MIT",
     "authors": [
         {
@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Vecsagus\\LaravelBoleto\\": "src"
+            "Eduardokum\\LaravelBoleto\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Vecsagus\\LaravelBoleto\\Tests\\": "tests"
+            "Eduardokum\\LaravelBoleto\\Tests\\": "tests"
         }
     }
 }

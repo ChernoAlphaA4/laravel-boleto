@@ -207,7 +207,7 @@ class Santander extends AbstractRetorno implements RetornoCnab240
         if ($this->getSegmentType($detalhe) == 'T') {
             $d->setOcorrencia($this->rem(16, 17, $detalhe))
                 ->setOcorrenciaDescricao(array_get($this->ocorrencias, $this->detalheAtual()->getOcorrencia(), 'Desconhecida'))
-                ->setNossoNumero($this->rem(41, 53, $detalhe))
+                ->setNossoNumero($this->rem(41, 52, $detalhe)) //Pegando menos um caracter para remoção do digito verificador do nosso numero
                 ->setCarteira($this->rem(54, 54, $detalhe))
                 ->setNumeroDocumento($this->rem(55, 69, $detalhe))
                 ->setDataVencimento($this->rem(70, 77, $detalhe))

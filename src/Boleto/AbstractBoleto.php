@@ -560,7 +560,7 @@ abstract class AbstractBoleto implements BoletoContract
      *
      * @return AbstractBoleto
      */
-    public function setDataDesconto(Carbon $dataDesconto)
+    public function setDataDesconto($dataDesconto)
     {
         $this->dataDesconto = $dataDesconto;
 

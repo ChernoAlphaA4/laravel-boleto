@@ -1100,18 +1100,18 @@ abstract class AbstractBoleto implements BoletoContract
 
     /**
      * Retorna o codigo de juros mora
-     * @return array
+     * @return mixed
      */
-    public function getCodigoJurosMora(): array
+    public function getCodigoJurosMora()
     {
       return $this->codigoJurosMora;
     }
 
     /**
      * Define o codigo juros mora
-     * @param array $codigoJurosMora
+     * @param $codigoJurosMora
      */
-    public function setCodigoJurosMora(array $codigoJurosMora)
+    public function setCodigoJurosMora($codigoJurosMora)
     {
       $this->codigoJurosMora = $codigoJurosMora;
     }

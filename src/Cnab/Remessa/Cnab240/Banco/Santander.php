@@ -227,8 +227,8 @@ class Santander extends AbstractRemessa implements RemessaContract
         $this->add(210, 212, '000');
         $this->add(213, 215, '000');
         $this->add(216, 218, '000');
-        $this->add(218, 221, '000');
-        $this->add(218, 240, '');
+        $this->add(219, 221, '000');
+        $this->add(222, 240, '');
 
         return $this;
     }

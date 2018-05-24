@@ -1103,24 +1103,6 @@ abstract class AbstractBoleto implements BoletoContract
     protected $jurosMoraDia;
 
     /**
-     * Retorna o juros mora
-     * @return mixed
-     */
-    public function getJurosMoraDia()
-    {
-      return $this->jurosMoraDia;
-    }
-
-    /**
-     * Define o Juros mora por dia
-     * @param mixed $jurosMoraDia
-     */
-    public function setJurosMoraDia($jurosMoraDia)
-    {
-      $this->jurosMoraDia = $jurosMoraDia;
-    }
-
-    /**
      * Retorna o codigo de juros mora
      * @return array
      */

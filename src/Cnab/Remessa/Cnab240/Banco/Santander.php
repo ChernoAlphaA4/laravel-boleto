@@ -82,6 +82,11 @@ class Santander extends AbstractRemessa implements RemessaContract
     protected $tipoCobranca;
 
     /**
+     * Numero de dias para baixa do titulo no banco
+     */
+    protected $diasParaBaixa;
+
+    /**
      * Retorna o tipo da cobrança
      *
      * @return string
@@ -123,6 +128,26 @@ class Santander extends AbstractRemessa implements RemessaContract
     }
 
     /**
+     * Define a quantidade de dias de permanencia do titulo
+     * @param $diasParaBaixa - Quantidade de dias
+     * @return $this
+     */
+    public function setDiasParaBaixa($diasParaBaixa){
+      $this->diasParaBaixa = $diasParaBaixa;
+
+      return $this;
+    }
+
+    /**
+     * Retorna a quantidade de dias de permanencia do titulo
+     * @return $this
+     */
+    public function getDiasParaBaixa(){
+      return $this->diasParaBaixa;
+    }
+
+
+  /**
      * @param BoletoContract $boleto
      *
      * @return $this
@@ -188,7 +213,7 @@ class Santander extends AbstractRemessa implements RemessaContract
         $this->add(222, 223, Util::formatCnab('9', 0, 2));
         $this->add(224, 224, Util::formatCnab('9', 2, 1));
         $this->add(225, 225, Util::formatCnab('9', 0, 1));
-        $this->add(226, 227, Util::formatCnab('9', 0, 2));
+        $this->add(226, 227, Util::formatCnab('9', $this->getDiasParaBaixa(), 2));
         $this->add(228, 229, Util::formatCnab('9', 0, 2));
         $this->add(230, 240, '');
 

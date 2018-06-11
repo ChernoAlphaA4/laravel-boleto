@@ -600,9 +600,7 @@ class Detalhe implements DetalheContract
      */
     public function setError($error)
     {
-        $this->ocorrenciaTipo = self::OCORRENCIA_ERRO;
         $this->error = $error;
-
         return $this;
     }
 }

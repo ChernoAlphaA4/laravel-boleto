@@ -56,6 +56,10 @@ class Detalhe implements DetalheContract
      */
     protected $dataOcorrencia;
     /**
+     * @var string
+     */
+    protected $mensagensAdicionais;
+    /**
      * @var Carbon
      */
     protected $dataCredito;
@@ -531,6 +535,25 @@ class Detalhe implements DetalheContract
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getMensagensAdicionais()
+    {
+      return $this->mensagensAdicionais;
+    }
+
+    /**
+     * @param $mensagens
+     *
+     * @return $this
+     * @throws \Exception
+     */
+    public function setMensagensAdicionais($mensagens)
+    {
+      $this->mensagensAdicionais = $mensagens;
+      return $this;
+    }
     /**
      * Retorna se tem erro.
      *

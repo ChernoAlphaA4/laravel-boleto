@@ -223,13 +223,7 @@ class Santander extends AbstractRetorno implements RetornoCnab240
        * ocorrencias
        */
       $msgAdicional = str_split(sprintf('%010s', $this->rem(209, 218, $detalhe)), 2) + array_fill(0, 5, '');
-      $msg = Util::appendStrings(
-        array_get($this->rejeicoes, $msgAdicional[0], ''),
-        array_get($this->rejeicoes, $msgAdicional[1], ''),
-        array_get($this->rejeicoes, $msgAdicional[2], ''),
-        array_get($this->rejeicoes, $msgAdicional[3], ''),
-        array_get($this->rejeicoes, $msgAdicional[4], '')
-      );
+      $msg = $msgAdicional[0] . " " . $msgAdicional[1] . " " . $msgAdicional[2] . " " . $msgAdicional[3] . " " . $msgAdicional[4];
       $d->setMensagensAdicionais($msg);
       if ($d->hasOcorrencia('06', '09', '17')) {
         $this->totais['liquidados']++;

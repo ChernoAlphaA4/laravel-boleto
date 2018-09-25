@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Eduardokum\LaravelBoleto\Contracts\Boleto;
 
 use Eduardokum\LaravelBoleto\Contracts\Pessoa as PessoaContract;
@@ -20,6 +21,8 @@ interface Boleto
   const STATUS_REGISTRO = 1;
   const STATUS_ALTERACAO = 2;
   const STATUS_BAIXA = 3;
+  const STATUS_ALTERACAO_DATA = 4;
+  const STATUS_CUSTOM = 99;
 
   /**
    * Render PDF.
@@ -82,6 +85,11 @@ interface Boleto
   /**
    * @return mixed
    */
+  public function getCodigoBanco();
+
+  /**
+   * @return mixed
+   */
   public function getCodigoBancoComDv();
 
   /**
@@ -131,17 +139,17 @@ interface Boleto
 
   /**
    * 1- Valor fixo, 2- Percentual
-   * @return \Carbon\Carbon
+   * @return Carbon
    */
   public function getCodigoMulta();
 
   /**
-   * @return \Carbon\Carbon
+   * @return Carbon
    */
   public function getDataMulta();
 
   /**
-   * @return \Carbon\Carbon
+   * @return Carbon
    */
   public function getCodigoDesconto2();
 
@@ -260,6 +268,8 @@ interface Boleto
   public function getEspecieDoc();
 
   /**
+   * @param int $default
+   *
    * @return mixed
    */
   public function getEspecieDocCodigo($default = 99);
@@ -300,7 +310,26 @@ interface Boleto
   public function baixarBoleto();
 
   /**
+   * @return mixed
+   */
+  public function alterarDataDeVencimento();
+
+  /**
+   * @param $instrucao
+   *
+   * @return mixed
+   */
+  public function comandarInstrucao($instrucao);
+
+  /**
+   * @return mixed
+   */
+  public function getComando();
+
+  /**
    * Método onde qualquer boleto deve extender para gerar o código da posição de 20 a 44
+   *
+   * @param $campoLivre
    *
    * @return array
    */

@@ -315,9 +315,9 @@ final class Util
             'ñ' => 'n', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o',
             'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ŕ' => 'r', 'ÿ' => 'y',
 
-            'ß' => 'sz', 'þ' => 'thorn',
+            'ß' => 'sz', 'þ' => 'thorn', 'º' => '', 'ª' => '', '°' => '',
         );
-        return strtr($string, $normalizeChars);
+        return preg_replace('/[^0-9a-zA-Z !*\-$\(\)\[\]\{\},.;:\/\\#%&@+=]/', '', strtr($string, $normalizeChars));
     }
 
     /**
@@ -474,6 +474,7 @@ final class Util
     public static function formatCnab($tipo, $valor, $tamanho, $dec = 0, $sFill = '')
     {
         $tipo = self::upper($tipo);
+        $valor = self::upper(self::normalizeChars($valor));
         if (in_array($tipo, array('9', 9, 'N', '9L', 'NL'))) {
             if ($tipo == '9L' || $tipo == 'NL') {
                 $valor = self::onlyNumbers($valor);
@@ -486,7 +487,6 @@ final class Util
         } elseif (in_array($tipo, array('A', 'X'))) {
             $left = '-';
             $type = 's';
-            $valor = self::upper(self::normalizeChars($valor));
         } else {
             throw new \Exception('Tipo inválido');
         }

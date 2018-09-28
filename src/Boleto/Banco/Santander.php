@@ -241,4 +241,30 @@ class Santander  extends AbstractBoleto implements BoletoContract
             'carteira' => substr($campoLivre, 22, 3),
         ];
     }
+
+  /**
+   * @return mixed
+   */
+  public function alterarDataDeVencimento()
+  {
+    // TODO: Implement alterarDataDeVencimento() method.
+  }
+
+  /**
+   * @param $instrucao
+   *
+   * @return mixed
+   */
+  public function comandarInstrucao($instrucao)
+  {
+    // TODO: Implement comandarInstrucao() method.
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getComando()
+  {
+    // TODO: Implement getComando() method.
+  }
 }

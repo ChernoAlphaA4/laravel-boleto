@@ -171,4 +171,30 @@ class Caixa  extends AbstractBoleto implements BoletoContract
             'nossoNumeroFull' => substr($campoLivre, 7, 3) . substr($campoLivre, 11, 3) . substr($campoLivre, 15, 8),
         ];
     }
+
+  /**
+   * @return mixed
+   */
+  public function alterarDataDeVencimento()
+  {
+    // TODO: Implement alterarDataDeVencimento() method.
+  }
+
+  /**
+   * @param $instrucao
+   *
+   * @return mixed
+   */
+  public function comandarInstrucao($instrucao)
+  {
+    // TODO: Implement comandarInstrucao() method.
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getComando()
+  {
+    // TODO: Implement getComando() method.
+  }
 }

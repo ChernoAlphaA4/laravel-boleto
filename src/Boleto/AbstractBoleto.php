@@ -2,7 +2,7 @@
 
 namespace Eduardokum\LaravelBoleto\Boleto;
 
-use Carbon\Carbon;
+use Carbon;
 use Eduardokum\LaravelBoleto\Boleto\Render\Html;
 use Eduardokum\LaravelBoleto\Boleto\Render\Pdf;
 use Eduardokum\LaravelBoleto\Contracts\Pessoa as PessoaContract;
@@ -116,13 +116,13 @@ abstract class AbstractBoleto implements BoletoContract
   /**
    * Data de vencimento
    *
-   * @var \Carbon
+   * @var Carbon
    */
   protected $dataVencimento;
   /**
    * Data de limite de desconto
    *
-   * @var \Carbon
+   * @var Carbon
    */
   protected $dataDesconto;
 
@@ -625,7 +625,7 @@ abstract class AbstractBoleto implements BoletoContract
   /**
    * Retorna a data de limite de desconto
    *
-   * @return \Carbon
+   * @return Carbon
    */
   public function getDataDesconto()
   {
@@ -635,7 +635,7 @@ abstract class AbstractBoleto implements BoletoContract
   /**
    * Retorna a data de limite de desconto no segmento R
    *
-   * @return \Carbon
+   * @return Carbon
    */
   public function getDataDesconto2()
   {

@@ -2,7 +2,7 @@
 
 namespace Eduardokum\LaravelBoleto\Boleto;
 
-use Carbon;
+use Carbon\Carbon;
 use Eduardokum\LaravelBoleto\Boleto\Render\Html;
 use Eduardokum\LaravelBoleto\Boleto\Render\Pdf;
 use Eduardokum\LaravelBoleto\Contracts\Pessoa as PessoaContract;

@@ -348,15 +348,15 @@ abstract class AbstractBoleto implements BoletoContract
     Util::fillClass($this, $params);
     // Marca a data de emissão para hoje, caso não especificada
     if (!$this->getDataDocumento()) {
-      $this->setDataDocumento(new Carbon());
+      $this->setDataDocumento(Carbon::now());
     }
     // Marca a data de processamento para hoje, caso não especificada
     if (!$this->getDataProcessamento()) {
-      $this->setDataProcessamento(new Carbon());
+      $this->setDataProcessamento(Carbon::now());
     }
     // Marca a data de vencimento para daqui a 5 dias, caso não especificada
     if (!$this->getDataVencimento()) {
-      $this->setDataVencimento(new Carbon(date('Y-m-d', strtotime('+5 days'))));
+      $this->setDataVencimento(Carbon::now());
     }
     // Marca a data de desconto
     if (!$this->getDataDesconto()) {

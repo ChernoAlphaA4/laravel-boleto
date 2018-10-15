@@ -208,7 +208,7 @@ class Santander extends AbstractRemessa implements RemessaContract
       $this->add(16, 17, sprintf('%2.02s', $boleto->getComando()));
     }
     $this->add(18, 21, Util::formatCnab('9', $this->getAgencia(), 4));
-    $this->add(22, 22, Util::formatCnab('9', '', 1));
+    $this->add(22, 22, Util::formatCnab('9', $this->getAgenciaDv(), 1));
     $this->add(23, 31, Util::formatCnab('9', $this->getConta(), 9));
     $this->add(32, 32, $this->getContaDv() ?: CalculoDV::santanderContaCorrente($this->getAgencia(), $this->getConta()));
     $this->add(33, 41, Util::formatCnab('9', $this->getConta(), 9));
@@ -229,7 +229,7 @@ class Santander extends AbstractRemessa implements RemessaContract
     $this->add(107, 108, Util::formatCnab('9', $boleto->getEspecieDocCodigo(), 2));
     $this->add(109, 109, Util::formatCnab('9', 'N', 1));
     $this->add(110, 117, $boleto->getDataDocumento()->format('dmY'));
-    $this->add(118, 118, ($boleto->getJuros() !== null && $boleto->getJuros() > 0) ? '2' : '0');    //0 = ISENTO | 1 = R$ ao dia | 2 = % ao mês
+    $this->add(118, 118, ($boleto->getJuros() !== null && $boleto->getJuros() > 0) ? '1' : '0');    //0 = ISENTO | 1 = R$ ao dia | 2 = % ao mês
     $this->add(119, 126, Util::formatCnab('9', $boleto->getDataVencimento()->format('dmY'), 8));
     $this->add(127, 141, Util::formatCnab('9', $boleto->getJuros(), 15, 2));
     $this->add(142, 142, $boleto->getDesconto() > 0 ? '1' : '0'); //0 = SEM DESCONTO | 1 = VALOR FIXO | 2 = PERCENTUAL
@@ -240,9 +240,9 @@ class Santander extends AbstractRemessa implements RemessaContract
     $this->add(196, 220, '');
     $this->add(221, 221, Util::formatCnab('9', 0, 1));
     $this->add(222, 223, Util::formatCnab('9', 0, 2));
-    $this->add(224, 224, Util::formatCnab('9', 2, 1));
+    $this->add(224, 224, Util::formatCnab('9', 1, 1));
     $this->add(225, 225, Util::formatCnab('9', 0, 1));
-    $this->add(226, 227, Util::formatCnab('9', 0, 2));
+    $this->add(226, 227, Util::formatCnab('9', $this->getDiasParaBaixa(), 2));
     $this->add(228, 229, Util::formatCnab('9', 0, 2));
     $this->add(230, 240, '');
 
@@ -325,7 +325,7 @@ class Santander extends AbstractRemessa implements RemessaContract
     $this->add(19, 26, '00000000');
     $this->add(27, 41, '000000000000000');
     $this->add(42, 65, '');
-    $this->add(66, 66, $boleto->getMulta() > 0 ? '2' : '0'); //0 = ISENTO | 1 = VALOR FIXO | 2 = PERCENTUAL
+    $this->add(66, 66, $boleto->getMulta() > 0 ? '1' : '0'); //0 = ISENTO | 1 = VALOR FIXO | 2 = PERCENTUAL
     $this->add(67, 74, $boleto->getDataVencimento()->format('dmY'));
     $this->add(75, 89, Util::formatCnab('9', $boleto->getMulta(), 15, 2));  //2,20 = 0000000000220
     $this->add(90, 240, '');

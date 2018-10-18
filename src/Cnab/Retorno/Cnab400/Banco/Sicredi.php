@@ -238,23 +238,16 @@ class Sicredi extends AbstractRetorno implements RetornoCnab400
         if ($d->hasOcorrencia('06', '15', '16')) {
 			$this->totais['valor_recebido'] += $d->getValorRecebido();
             $this->totais['liquidados']++;
-            $d->setOcorrenciaTipo($d::OCORRENCIA_LIQUIDADA);
         } elseif ($d->hasOcorrencia('02')) {
             $this->totais['entradas']++;
-            $d->setOcorrenciaTipo($d::OCORRENCIA_ENTRADA);
         } elseif ($d->hasOcorrencia('09', '10')) {
             $this->totais['baixados']++;
-            $d->setOcorrenciaTipo($d::OCORRENCIA_BAIXADA);
         } elseif ($d->hasOcorrencia('23')) {
             $this->totais['protestados']++;
-            $d->setOcorrenciaTipo($d::OCORRENCIA_PROTESTADA);
         } elseif ($d->hasOcorrencia('33')) {
             $this->totais['alterados']++;
-            $d->setOcorrenciaTipo($d::OCORRENCIA_ALTERACAO);
         } elseif ($d->hasOcorrencia('03', '27', '30')) {
             $this->totais['erros']++;
-        } else {
-            $d->setOcorrenciaTipo($d::OCORRENCIA_OUTROS);
         }
 
         $stringErrors = sprintf('%010s', $this->rem(319, 328, $detalhe));

@@ -165,6 +165,8 @@ class Bradesco extends AbstractRetorno implements RetornoCnab400
       ->setValorMulta(Util::nFloat($this->rem(280, 292, $detalhe) / 100, 2, false));
 
     $msgAdicional = str_split(sprintf('%08s', $this->rem(319, 328, $detalhe)), 2) + array_fill(0, 5, '');
+    $msg = $msgAdicional[0] . " " . $msgAdicional[1] . " " . $msgAdicional[2] . " " . $msgAdicional[3] . " " . $msgAdicional[4];
+    $d->setMensagensAdicionais($msg);
     if ($d->hasOcorrencia('06', '15', '17')) {
       $this->totais['liquidados']++;
     } elseif ($d->hasOcorrencia('02')) {

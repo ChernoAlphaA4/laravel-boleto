@@ -205,7 +205,8 @@ class Bradesco extends AbstractRetorno implements RetornoCnab400
       ->setQuantidadeEntradas((int)$this->totais['entradas'])
       ->setQuantidadeLiquidados((int)$this->totais['liquidados'])
       ->setQuantidadeBaixados((int)$this->totais['baixados'])
-      ->setQuantidadeAlterados((int)$this->totais['alterados']);
+      ->setQuantidadeAlterados((int)$this->totais['alterados'])
+      ->setNumeroSequencialArquivo((int)$this->rem(40, 47, $trailer));
 
     return true;
   }

@@ -139,17 +139,17 @@ interface Boleto
 
   /**
    * 1- Valor fixo, 2- Percentual
-   * @return Carbon
+   * @return \Carbon\Carbon
    */
   public function getCodigoMulta();
 
   /**
-   * @return Carbon
+   * @return \Carbon\Carbon
    */
   public function getDataMulta();
 
   /**
-   * @return Carbon
+   * @return \Carbon\Carbon
    */
   public function getCodigoDesconto2();
 

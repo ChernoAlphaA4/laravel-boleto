@@ -429,7 +429,7 @@ class Caixa extends AbstractRetorno implements RetornoCnab240
         if ($this->getSegmentType($detalhe) == 'T') {
             $d->setOcorrencia($this->rem(16, 17, $detalhe))
                 ->setOcorrenciaDescricao(array_get($this->ocorrencias, $this->detalheAtual()->getOcorrencia(), 'Desconhecida'))
-                ->setNossoNumero($this->rem(39, 56, $detalhe))
+                ->setNossoNumero($this->rem(42, 56, $detalhe))
                 ->setCarteira($this->rem(58, 58, $detalhe))
                 ->setNumeroDocumento($this->rem(59, 69, $detalhe))
                 ->setDataVencimento($this->rem(74, 81, $detalhe))

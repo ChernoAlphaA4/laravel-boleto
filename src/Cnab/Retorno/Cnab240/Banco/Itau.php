@@ -328,22 +328,17 @@ class Itau extends AbstractRetorno implements RetornoCnab240
             $msgAdicional = str_split(sprintf('%08s', $this->rem(214, 221, $detalhe)), 2) + array_fill(0, 5, '');
             if ($d->hasOcorrencia('06', '08', '10')) {
                 $this->totais['liquidados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_LIQUIDADA);
             } elseif ($d->hasOcorrencia('02')) {
                 $this->totais['entradas']++;
                 if(array_search('a4', array_map('strtolower', $msgAdicional)) !== false) {
                     $d->getPagador()->setDda(true);
                 }
-                $d->setOcorrenciaTipo($d::OCORRENCIA_ENTRADA);
             } elseif ($d->hasOcorrencia('09')) {
                 $this->totais['baixados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_BAIXADA);
             } elseif ($d->hasOcorrencia('32')) {
                 $this->totais['protestados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_PROTESTADA);
             } elseif ($d->hasOcorrencia('04')) {
                 $this->totais['alterados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_ALTERACAO);
             } elseif ($d->hasOcorrencia('03', '15', '16', '17', '18')) {
                 $this->totais['erros']++;
                 $error = Util::appendStrings(
@@ -354,7 +349,6 @@ class Itau extends AbstractRetorno implements RetornoCnab240
                 );
                 $d->setError($error);
             } else {
-                $d->setOcorrenciaTipo($d::OCORRENCIA_OUTROS);
             }
         }
 

@@ -201,22 +201,17 @@ class Sicredi extends AbstractRetorno implements RetornoCnab240
             $msgAdicional = str_split(sprintf('%08s', $this->rem(214, 223, $detalhe)), 2) + array_fill(0, 5, '');
             if ($d->hasOcorrencia('06', '17')) {
                 $this->totais['liquidados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_LIQUIDADA);
             } elseif ($d->hasOcorrencia('02')) {
                 $this->totais['entradas']++;
                 if(array_search('a4', array_map('strtolower', $msgAdicional)) !== false) {
                     $d->getPagador()->setDda(true);
                 }
-                $d->setOcorrenciaTipo($d::OCORRENCIA_ENTRADA);
             } elseif ($d->hasOcorrencia('09')) {
                 $this->totais['baixados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_BAIXADA);
             } elseif ($d->hasOcorrencia('25')) {
                 $this->totais['protestados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_PROTESTADA);
             } elseif ($d->hasOcorrencia('27', '14')) {
                 $this->totais['alterados']++;
-                $d->setOcorrenciaTipo($d::OCORRENCIA_ALTERACAO);
             } elseif ($d->hasOcorrencia('03', '26', '30', '36')) {
                 $this->totais['erros']++;
                 $error = Util::appendStrings(
@@ -228,7 +223,6 @@ class Sicredi extends AbstractRetorno implements RetornoCnab240
                 );
                 $d->setError($error);
             } else {
-                $d->setOcorrenciaTipo($d::OCORRENCIA_OUTROS);
             }
         }
 

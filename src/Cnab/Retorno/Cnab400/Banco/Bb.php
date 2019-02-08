@@ -208,7 +208,7 @@ class Bb extends AbstractRetorno implements RetornoCnab400
     $d = $this->detalheAtual();
 
     $d->setCarteira($this->rem(107, 108, $detalhe))
-      ->setNossoNumero($this->rem(64, 80, $detalhe))
+      ->setNossoNumero($this->rem(64, 79, $detalhe))//Pegando menos um caracter para remoção do digito verificador do nosso numero
       ->setNumeroDocumento($this->rem(117, 126, $detalhe))
       ->setNumeroControle($this->rem(39, 63, $detalhe))
       ->setOcorrencia($this->rem(109, 110, $detalhe))

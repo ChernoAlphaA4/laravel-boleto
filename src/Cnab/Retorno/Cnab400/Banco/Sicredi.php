@@ -219,7 +219,7 @@ class Sicredi extends AbstractRetorno implements RetornoCnab400
     {
         $d = $this->detalheAtual();
 		
-        $d->setNossoNumero($this->rem(48, 62, $detalhe))
+        $d->setNossoNumero($this->rem(48, 61, $detalhe))//Pegando menos um caracter para remoção do digito verificador do nosso numero
             ->setNumeroControle($this->rem(117, 126, $detalhe))
             ->setNumeroDocumento($this->rem(117, 126, $detalhe))
             ->setOcorrencia($this->rem(109, 110, $detalhe))

@@ -126,7 +126,7 @@ class Pessoa implements PessoaContract
   {
     $documento = substr(Util::onlyNumbers($documento), -14);
     if (!in_array(strlen($documento), [10, 11, 14, 0])) {
-      throw new \Exception("Documento do {$this->getNome()} inválido");
+      throw new \Exception("{$this->getNome()} está com documento inválido");
     }
     $this->documento = $documento;
   }

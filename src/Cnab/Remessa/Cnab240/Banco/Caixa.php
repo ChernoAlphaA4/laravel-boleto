@@ -78,6 +78,32 @@ class Caixa extends AbstractRemessa implements RemessaContract
   protected $codigoCliente;
 
   /**
+   * Numero de dias para baixa do titulo no banco
+   */
+  protected $diasParaBaixa;
+
+  /**
+   * Define a quantidade de dias de permanencia do titulo
+   * @param $diasParaBaixa - Quantidade de dias
+   * @return $this
+   */
+  public function setDiasParaBaixa($diasParaBaixa)
+  {
+    $this->diasParaBaixa = $diasParaBaixa;
+
+    return $this;
+  }
+
+  /**
+   * Retorna a quantidade de dias de permanencia do titulo
+   * @return $this
+   */
+  public function getDiasParaBaixa()
+  {
+    return $this->diasParaBaixa;
+  }
+
+  /**
    * Retorna o codigo do cliente.
    *
    * @return mixed
@@ -174,7 +200,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     }
     $this->add(222, 223, Util::formatCnab('9', $boleto->getDiasProtesto(), 2));
     $this->add(224, 224, '1'); //  ‘1’ = Baixar / Devolver '2' = Não Baixar / Não Devolver (NÃO TRATADO PELO BANCO)
-    $this->add(225, 227, Util::formatCnab('9', $boleto->getDiasBaixaAutomatica(), 3));  //Se informado 000 será baixado no dia posterior do vencimento. Se for informado '' será baixado 5 dias após o vencimento, se não será baixado os dias informados
+    $this->add(225, 227, Util::formatCnab('9', $this->getDiasParaBaixa(), 3));  //Se informado 000 será baixado no dia posterior do vencimento. Se for informado '' será baixado 5 dias após o vencimento, se não será baixado os dias informados
     $this->add(228, 229, Util::formatCnab('9', $boleto->getMoeda(), 2));
     $this->add(230, 239, '0000000000');
     $this->add(240, 240, '');

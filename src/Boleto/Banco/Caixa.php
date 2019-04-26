@@ -106,7 +106,7 @@ class Caixa extends AbstractBoleto implements BoletoContract
    *
    * @return AbstractBoleto
    */
-  public function setDataDesconto(Carbon $dataDesconto3)
+  public function setDataDesconto3(Carbon $dataDesconto3)
   {
     $this->dataDesconto3 = $dataDesconto3;
 

@@ -286,10 +286,10 @@ class Caixa extends AbstractRemessa implements RemessaContract
     }
     $this->add(18, 18, Util::onlyNumbers($boleto->getCodigoDesconto2()));
     $this->add(19, 26, $boleto->getDesconto2() > 0 ? $boleto->getDataDesconto2()->format('dmY') : '00000000');
-    $this->add(27, 41, $boleto->getDesconto2() > 0 ? $boleto->getDesconto2()->format('dmY') : '000000000000000');
+    $this->add(27, 41, $boleto->getDesconto2() > 0 ? $boleto->getDesconto2() : '000000000000000');
     $this->add(42, 42, Util::onlyNumbers($boleto->getCodigoDesconto3()));
     $this->add(43, 50, $boleto->getDesconto3() > 0 ? $boleto->getDataDesconto3()->format('dmY') : '00000000');
-    $this->add(51, 65, $boleto->getDesconto3() > 0 ? $boleto->getDesconto3()->format('dmY') : '000000000000000');
+    $this->add(51, 65, $boleto->getDesconto3() > 0 ? $boleto->getDesconto3() : '000000000000000');
     $this->add(66, 66, $boleto->getMulta() > 0 ? '2' : '0'); //0 = ISENTO | 1 = VALOR FIXO | 2 = PERCENTUAL
     $this->add(67, 74, $boleto->getDataVencimento()->format('dmY'));
     $this->add(75, 89, Util::formatCnab('9', $boleto->getMulta(), 15, 2));  //2,20 = 0000000000220

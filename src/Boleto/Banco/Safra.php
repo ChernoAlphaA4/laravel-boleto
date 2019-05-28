@@ -7,22 +7,21 @@ use Eduardokum\LaravelBoleto\CalculoDV;
 use Eduardokum\LaravelBoleto\Contracts\Boleto\Boleto as BoletoContract;
 use Eduardokum\LaravelBoleto\Util;
 
-class Itau extends AbstractBoleto implements BoletoContract
+class Safra extends AbstractBoleto implements BoletoContract
 {
-
   /**
    * Local de pagamento
    *
    * @var string
    */
-  protected $localPagamento = 'Até o vencimento, preferencialmente no Itaú';
+  protected $localPagamento = 'Até o vencimento, pode ser pago em qualquer agencia bancária';
 
   /**
    * Código do banco
    *
    * @var string
    */
-  protected $codigoBanco = self::COD_BANCO_ITAU;
+  protected $codigoBanco = self::COD_BANCO_SAFRA;
   /**
    * Variáveis adicionais.
    *
@@ -99,7 +98,7 @@ class Itau extends AbstractBoleto implements BoletoContract
    */
   public function getNossoNumeroBoleto()
   {
-    return $this->getCarteira() . '/' . substr_replace($this->getNossoNumero(), '-', -1, 0);
+    return $this->getNossoNumero();
   }
 
   /**

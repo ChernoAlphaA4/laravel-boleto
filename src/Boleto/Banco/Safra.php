@@ -111,9 +111,42 @@ class Safra extends AbstractBoleto implements BoletoContract
       . $this->getCampoLivre();
 
     $resto = Util::modulo11($codigo, 2, 9, 0);
-    $dv = (in_array($resto, [0, 10, 1])) ? 1 : $resto;
+    $dv = (in_array($resto, [0, 10, 1])) ? 1 : abs(11 - $resto);
 
     return $this->campoCodigoBarras = substr($codigo, 0, 4) . $dv . substr($codigo, 4);
+  }
+
+  /**
+   * Retorna a linha digitável do boleto
+   *
+   * @return string
+   * @throws \Exception
+   */
+  public function getLinhaDigitavel()
+  {
+    if (!empty($this->campoLinhaDigitavel)) {
+      return $this->campoLinhaDigitavel;
+    }
+
+    $codigo = $this->getCodigoBarras();
+
+    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 6);
+    $s1 = $s1 . Util::modulo10($s1);
+    $s1 = substr_replace($s1, '.', 5, 0);
+
+    $s2 = substr($codigo, 25, 10);
+    $s2 = $s2 . Util::modulo10($s2);
+    $s2 = substr_replace($s2, '.', 5, 0);
+
+    $s3 = substr($codigo, 34, 10);
+    $s3 = $s3 . Util::modulo10($s3);
+    $s3 = substr_replace($s3, '.', 5, 0);
+
+    $s4 = substr($codigo, 4, 1);
+
+    $s5 = substr($codigo, 5, 14);
+
+    return $this->campoLinhaDigitavel = sprintf('%s %s %s %s %s', $s1, $s2, $s3, $s4, $s5);
   }
 
   /**

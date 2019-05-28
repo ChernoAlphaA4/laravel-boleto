@@ -35,7 +35,7 @@ class Safra extends AbstractBoleto implements BoletoContract
    *
    * @var array
    */
-  protected $carteiras = ['112', '115', '188', '109', '121', '180', '110', '111'];
+  protected $carteiras = ['01', '02'];
   /**
    * Espécie do documento, coódigo para remessa
    *

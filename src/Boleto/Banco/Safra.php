@@ -150,13 +150,13 @@ class Safra extends AbstractBoleto implements BoletoContract
       'convenio' => null,
       'agenciaDv' => null,
       'codigoCliente' => null,
-      'carteira' => substr($campoLivre, 0, 3),
-      'nossoNumero' => substr($campoLivre, 3, 8),
-      'nossoNumeroDv' => substr($campoLivre, 11, 1),
-      'nossoNumeroFull' => substr($campoLivre, 3, 9),
-      'agencia' => substr($campoLivre, 12, 4),
-      'contaCorrente' => substr($campoLivre, 16, 5),
-      'contaCorrenteDv' => substr($campoLivre, 21, 1),
+      'carteira' => null,
+      'nossoNumero' => substr($campoLivre, 16, 25),
+      'nossoNumeroDv' => null,
+      'nossoNumeroFull' => substr($campoLivre, 16, 25),
+      'agencia' => substr($campoLivre, 2, 6),
+      'contaCorrente' => substr($campoLivre, 7, 15),
+      'contaCorrenteDv' => null,
     ];
   }
 

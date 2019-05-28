@@ -90,6 +90,33 @@ class Safra extends AbstractBoleto implements BoletoContract
   }
 
   /**
+   * Codigo de barras do safra
+   * @return mixed|string
+   * @throws \Exception
+   */
+  public function getCodigoBarras()
+  {
+    if (!empty($this->campoCodigoBarras)) {
+      return $this->campoCodigoBarras;
+    }
+
+    if (!$this->isValid($messages)) {
+      throw new \Exception('Campos requeridos pelo banco, aparentam estar ausentes ' . $messages);
+    }
+
+    $codigo = Util::numberFormatGeral($this->getCodigoBanco(), 3)
+      . $this->getMoeda()
+      . Util::fatorVencimento($this->getDataVencimento())
+      . Util::numberFormatGeral($this->getValor(), 10)
+      . $this->getCampoLivre();
+
+    $resto = Util::modulo11($codigo, 2, 9, 0);
+    $dv = (in_array($resto, [0, 10, 1])) ? 1 : $resto;
+
+    return $this->campoCodigoBarras = substr($codigo, 0, 4) . $dv . substr($codigo, 4);
+  }
+
+  /**
    * Método para gerar o código da posição de 20 a 44
    *
    * @return string
@@ -101,12 +128,11 @@ class Safra extends AbstractBoleto implements BoletoContract
       return $this->campoLivre;
     }
 
-    $campoLivre = Util::numberFormatGeral($this->getCarteira(), 3);
+    $campoLivre = Util::numberFormatGeral(7, 1);
+    $campoLivre .= Util::numberFormatGeral($this->getAgencia(), 5);
+    $campoLivre .= Util::numberFormatGeral($this->getConta(), 9);
     $campoLivre .= Util::numberFormatGeral($this->getNossoNumero(), 9);
-    $campoLivre .= Util::numberFormatGeral($this->getAgencia(), 4);
-    $campoLivre .= Util::numberFormatGeral($this->getConta(), 5);
-    $campoLivre .= CalculoDV::itauContaCorrente($this->getAgencia(), $this->getConta());
-    $campoLivre .= '000';
+    $campoLivre .= '2';
 
     return $this->campoLivre = $campoLivre;
   }

@@ -228,7 +228,6 @@ class Safra extends AbstractRetorno implements RetornoCnab400
 
     $qty_total = ($this->rem(18, 25, $trailer)) == 0 ? ($this->rem(98, 105, $trailer)) : ($this->rem(18, 25, $trailer));
     $valor_total = ($this->rem(26, 39, $trailer) / 100) == 0 ? ($this->rem(106, 119, $trailer) / 100) : ($this->rem(26, 39, $trailer) / 100);
-
     $this->getTrailer()
       ->setQuantidadeTitulos((int)$qty_total)
       ->setValorTitulos((float)Util::nFloat($valor_total, 2, false))

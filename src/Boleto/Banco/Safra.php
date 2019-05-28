@@ -10,13 +10,6 @@ use Eduardokum\LaravelBoleto\Util;
 class Safra extends AbstractBoleto implements BoletoContract
 {
   /**
-   * Local de pagamento
-   *
-   * @var string
-   */
-  protected $localPagamento = 'Até o vencimento, pode ser pago em qualquer agencia bancária';
-
-  /**
    * Código do banco
    *
    * @var string

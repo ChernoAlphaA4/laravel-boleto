@@ -1227,13 +1227,6 @@ abstract class AbstractBoleto implements BoletoContract
   /**
    * Define o codigo do desconto para o segmento P
    *
-   * CÓDIGO DO DESCONTO
-   * 0 = ISENTO
-   * 1 = Valor fixo ate a data informada – Informar o valor no campo “valor de desconto a ser concedido”.
-   * 2 = Percentual ate a data informada – Informar o percentual no campo “percentual de desconto a ser concedido”
-   * 3 = Valor por antecipação por dia corrido - Informar o valor no campo “valor de desconto a ser concedido”
-   * 4 = Valor por antecipação dia útil - Informar o valor no campo “valor de desconto a ser concedido”
-   * * Para os código 1 e 2 será obrigatório a informação da “data”
    * @param $d1 - Valor
    * @return mixed
    */
@@ -1254,14 +1247,6 @@ abstract class AbstractBoleto implements BoletoContract
 
   /**
    * Define o codigo do desconto para o segmento R
-   *
-   * CÓDIGO DO DESCONTO
-   * 0 = ISENTO
-   * 1 = Valor fixo ate a data informada – Informar o valor no campo “valor de desconto a ser concedido”.
-   * 2 = Percentual ate a data informada – Informar o percentual no campo “percentual de desconto a ser concedido”
-   * 3 = Valor por antecipação por dia corrido - Informar o valor no campo “valor de desconto a ser concedido”
-   * 4 = Valor por antecipação dia útil - Informar o valor no campo “valor de desconto a ser concedido”
-   * * Para os código 1 e 2 será obrigatório a informação da “data”
    *
    * @param $d2 - Valor
    * @return mixed

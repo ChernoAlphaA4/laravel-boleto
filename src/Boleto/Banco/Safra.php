@@ -83,12 +83,7 @@ class Safra extends AbstractBoleto implements BoletoContract
    */
   protected function gerarNossoNumero()
   {
-    $numero_boleto = Util::numberFormatGeral($this->getNumero(), 8);
-    $carteira = Util::numberFormatGeral($this->getCarteira(), 3);
-    $agencia = Util::numberFormatGeral($this->getAgencia(), 4);
-    $conta = Util::numberFormatGeral($this->getConta(), 5);
-    $dv = CalculoDV::itauNossoNumero($agencia, $conta, $carteira, $numero_boleto);
-    return $numero_boleto . $dv;
+    return $this->getNossoNumero();
   }
 
   /**

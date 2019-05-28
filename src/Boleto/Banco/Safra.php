@@ -76,7 +76,7 @@ class Safra extends AbstractBoleto implements BoletoContract
    */
   protected function gerarNossoNumero()
   {
-    return $this->getNossoNumero();
+    return $this->getNumero();
   }
 
   /**

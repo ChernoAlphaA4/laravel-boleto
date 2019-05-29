@@ -130,11 +130,11 @@ class Safra extends AbstractBoleto implements BoletoContract
 
     $codigo = $this->getCodigoBarras();
 
-    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 6);
+    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 5);
     $s1 = $s1 . Util::modulo10($s1);
     $s1 = substr_replace($s1, '.', 5, 0);
 
-    $s2 = substr($codigo, 25, 10);
+    $s2 = substr($codigo, 24, 10);
     $s2 = $s2 . Util::modulo10($s2);
     $s2 = substr_replace($s2, '.', 5, 0);
 
@@ -148,7 +148,6 @@ class Safra extends AbstractBoleto implements BoletoContract
 
     return $this->campoLinhaDigitavel = sprintf('%s %s %s %s %s', $s1, $s2, $s3, $s4, $s5);
   }
-
   /**
    * Método para gerar o código da posição de 20 a 44
    *

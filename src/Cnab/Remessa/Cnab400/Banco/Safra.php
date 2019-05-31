@@ -110,7 +110,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     }
     $this->add(111, 120, Util::formatCnab('X', $boleto->getNumeroDocumento(), 10));
     $this->add(121, 126, Util::formatCnab('9', $boleto->getDataVencimento()->format('dmy'), 6));
-    $this->add(127, 139, Util::formatCnab('9', $boleto->getValor(), 11, 2));
+    $this->add(127, 139, Util::formatCnab('9', $boleto->getValor(), 13, 2));
     $this->add(140, 142, Util::formatCnab('9', $this->getCodigoBanco(), 3));
     $this->add(143, 147, Util::formatCnab('X', '00000', 5));
     $this->add(148, 149, Util::formatCnab('9', $boleto->getEspecieDocCodigo(), 2));
@@ -122,9 +122,9 @@ class Safra extends AbstractRemessa implements RemessaContract
       $this->add(106, 107, Util::formatCnab('9', $boleto->getDiasProtesto(), 2));
       $this->add(159, 160, Util::formatCnab('9', 10, 2));
     }
-    $this->add(161, 173, Util::formatCnab('9', $boleto->getMoraDia(), 11, 2));
-    $this->add(174, 179, $boleto->getDesconto() > 0 ? $boleto->getDataDesconto()->format('dmy') : '000000');
-    $this->add(180, 192, Util::formatCnab('9', $boleto->getDesconto(), 11, 2));
+    $this->add(161, 173, Util::formatCnab('9', $boleto->getMoraDia(), 13, 2));
+    $this->add(174, 179, Util::formatCnab('9', $boleto->getDesconto() > 0 ? $boleto->getDataDesconto()->format('dmy') : '000000', 6));
+    $this->add(180, 192, Util::formatCnab('9', $boleto->getDesconto(), 13, 2));
     $this->add(193, 205, Util::formatCnab('9', 0, 13, 2));
     $this->add(206, 218, Util::formatCnab('9', 0, 13, 2));
     $this->add(219, 220, strlen(Util::onlyNumbers($boleto->getPagador()->getDocumento())) == 14 ? '02' : '01');

@@ -59,8 +59,8 @@ class Safra extends AbstractRemessa implements RemessaContract
   {
     $this->iniciaHeader();
 
-    $this->add(1, 1, '0');
-    $this->add(2, 2, '1');
+    $this->add(1, 1, Util::formatCnab('9', '0', 1));
+    $this->add(2, 2, Util::formatCnab('9', '1', 1));
     $this->add(3, 9, 'REMESSA');
     $this->add(10, 11, '01');
     $this->add(12, 19, Util::formatCnab('X', 'Cobrança', 8));
@@ -73,7 +73,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(91, 94, '');
     $this->add(95, 100, $this->getDataRemessa('dmy'));
     $this->add(101, 391, '');
-    $this->add(392, 394, Util::formatCnab('9', $this->getIdremessa(), 7));
+    $this->add(392, 394, Util::formatCnab('9', $this->getIdremessa(), 3));
     $this->add(395, 400, Util::formatCnab('9', 1, 6));
 
     return $this;

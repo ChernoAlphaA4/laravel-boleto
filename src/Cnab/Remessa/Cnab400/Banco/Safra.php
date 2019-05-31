@@ -37,11 +37,17 @@ class Safra extends AbstractRemessa implements RemessaContract
 
 
   /**
+   * Define as carteiras disponíveis para este banco
+   *
+   * @var array
+   */
+  protected $carteiras = ['01', '02'];
+  /**
    * Código do banco
    *
    * @var string
    */
-  protected $codigoBanco = BoletoContract::COD_BANCO_BRADESCO;
+  protected $codigoBanco = BoletoContract::COD_BANCO_SAFRA;
 
   /**
    * Função para gerar o cabeçalho do arquivo.

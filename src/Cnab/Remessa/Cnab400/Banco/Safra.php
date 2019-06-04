@@ -70,7 +70,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(10, 11, '01');
     $this->add(12, 19, Util::formatCnab('X', 'Cobrança', 8));
     $this->add(20, 26, '');
-    $this->add(27, 40, Util::formatCnab('9L', $this->getAgencia(), 5) . Util::formatCnab('9L', $this->getConta(), 9));
+    $this->add(27, 40, Util::formatCnab('9L', $this->getAgencia() . $this->getAgenciaDv(), 5) . Util::formatCnab('9L', $this->getConta() . $this->getContaDv(), 9));
     $this->add(41, 46, '');
     $this->add(47, 76, Util::formatCnab('X', $this->getBeneficiario()->getNome(), 30));
     $this->add(77, 79, Util::formatCnab('9', $this->getCodigoBanco(), 3));
@@ -101,7 +101,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(1, 1, '1');
     $this->add(2, 3, Util::formatCnab('9', '02', 2));
     $this->add(4, 17, Util::formatCnab('9L', $this->getBeneficiario()->getDocumento(), 14));
-    $this->add(18, 31, Util::formatCnab('9L', $this->getAgencia(), 5) . Util::formatCnab('9L', $this->getConta(), 9));
+    $this->add(18, 31, Util::formatCnab('9L', $this->getAgencia() . $this->getAgenciaDv(), 5) . Util::formatCnab('9L', $this->getConta() . $this->getContaDv(), 9));
     $this->add(32, 37, Util::formatCnab('X', '', 6));
     $this->add(38, 62, Util::formatCnab('X', '', 25));
     $this->add(63, 71, Util::formatCnab('9', $boleto->getNossoNumero(), 9));
@@ -110,7 +110,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(103, 104, Util::formatCnab('9', '00', 2));
     $this->add(105, 105, Util::formatCnab('9', '', 1));
     $this->add(106, 107, Util::formatCnab('9', '', 1));
-    $this->add(108, 108, Util::formatCnab('9', '', 1));
+    $this->add(108, 108, Util::formatCnab('9', '1', 1));
     $this->add(109, 110, Util::formatCnab('9', self::REGISTRO, 2));
     if ($boleto->getStatus() == $boleto::STATUS_BAIXA) {
       $this->add(109, 110, self::BAIXA); // BAIXA

@@ -146,11 +146,13 @@ class Safra extends AbstractBoleto implements BoletoContract
 
     $codigo = $this->getCodigoBarras();
 
-    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 5);
+
+    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 1) . substr($codigo, 21, 4);
+
     $s1 = $s1 . Util::modulo10($s1);
     $s1 = substr_replace($s1, '.', 5, 0);
-
     $s2 = substr($codigo, 24, 10);
+
     $s2 = $s2 . Util::modulo10($s2);
     $s2 = substr_replace($s2, '.', 5, 0);
 
@@ -179,7 +181,7 @@ class Safra extends AbstractBoleto implements BoletoContract
 
     $campoLivre = Util::numberFormatGeral(7, 1);
     $campoLivre .= Util::numberFormatGeral($this->getAgencia(), 5);
-    $campoLivre .= Util::numberFormatGeral($this->getConta(), 9);
+    $campoLivre .= Util::numberFormatGeral($this->getConta() . $this->getContaDv(), 9);
     $campoLivre .= Util::numberFormatGeral($this->getNossoNumero(), 9);
     $campoLivre .= '2';
 

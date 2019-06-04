@@ -130,7 +130,7 @@ class Safra extends AbstractBoleto implements BoletoContract
       . $this->getMoeda()
       . Util::fatorVencimento($this->getDataVencimento())
       . Util::numberFormatGeral($this->getValor(), 10)
-      . Util::numberFormatGeral($this->getAgencia(), 5)
+      . Util::numberFormatGeral($this->getAgencia() . $this->getAgenciaDv(), 5)
       . Util::numberFormatGeral($this->getConta() . $this->getContaDv(), 9)
       . Util::numberFormatGeral($this->getNossoNumero(), 9)
       . '2';
@@ -189,7 +189,7 @@ class Safra extends AbstractBoleto implements BoletoContract
     }
 
     $campoLivre = Util::numberFormatGeral(7, 1);
-    $campoLivre .= Util::numberFormatGeral($this->getAgencia(), 5);
+    $campoLivre .= Util::numberFormatGeral($this->getAgencia() . $this->getAgenciaDv(), 5);
     $campoLivre .= Util::numberFormatGeral($this->getConta() . $this->getContaDv(), 9);
     $campoLivre .= Util::numberFormatGeral($this->getNossoNumero(), 9);
     $campoLivre .= '2';

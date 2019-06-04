@@ -15,6 +15,12 @@ use Eduardokum\LaravelBoleto\Util;
 
 class Safra extends AbstractRemessa implements RemessaContract
 {
+  /**
+   * Valor total dos titulos.
+   *
+   * @var float
+   */
+  private $total = 0;
 
   const
     REGISTRO = '01',
@@ -34,7 +40,6 @@ class Safra extends AbstractRemessa implements RemessaContract
   , INSTRUCAO_NAO_PROTESTAR = '07'
   , INSTRUCAO_NAO_COBRAR_JUROS_DE_MORA = '08'
   , INSTRUCAO_MULTA = '16';
-
 
   /**
    * Define as carteiras disponíveis para este banco
@@ -61,11 +66,11 @@ class Safra extends AbstractRemessa implements RemessaContract
 
     $this->add(1, 1, Util::formatCnab('9', '0', 1));
     $this->add(2, 2, Util::formatCnab('9', '1', 1));
-    $this->add(3, 9, 'REMESSA');
+    $this->add(3, 9, Util::formatCnab('X', 'REMESSA', 7));
     $this->add(10, 11, '01');
     $this->add(12, 19, Util::formatCnab('X', 'Cobrança', 8));
     $this->add(20, 26, '');
-    $this->add(27, 40, Util::formatCnab('9', $this->getAgencia() . $this->getConta(), 14));
+    $this->add(27, 40, Util::formatCnab('9', $this->getAgencia(), 5) . Util::formatCnab('9', $this->getConta(), 9));
     $this->add(41, 46, '');
     $this->add(47, 76, Util::formatCnab('X', $this->getBeneficiario()->getNome(), 30));
     $this->add(77, 79, Util::formatCnab('9', $this->getCodigoBanco(), 3));
@@ -90,6 +95,8 @@ class Safra extends AbstractRemessa implements RemessaContract
   {
     $this->boletos[] = $boleto;
     $this->iniciaDetalhe();
+
+    $this->total += $boleto->getValor();
 
     $this->add(1, 1, '1');
     $this->add(2, 3, Util::formatCnab('9', '02', 2));
@@ -138,8 +145,8 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(350, 351, Util::formatCnab('X', $boleto->getPagador()->getUf(), 2));
     $this->add(352, 381, Util::formatCnab('X', $boleto->getSacadorAvalista() ? $boleto->getSacadorAvalista()->getNome() : '', 30));
     $this->add(382, 388, '');
-    $this->add(389, 391, '');
-    $this->add(392, 394, '');
+    $this->add(389, 391, Util::formatCnab('9', $this->getCodigoBanco(), 3));
+    $this->add(392, 394, Util::formatCnab('9', '060', 3));
     $this->add(395, 400, Util::formatCnab('9', $this->iRegistros + 1, 6));
 
     return $this;
@@ -158,9 +165,9 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(1, 1, '9');
     $this->add(2, 368, '');
     $this->add(369, 376, Util::formatCnab('9', $this->getCount() - 2, 8));
-    $this->add(377, 391, '');
-    $this->add(392, 394, '');
-    $this->add(395, 400, Util::formatCnab('9', $this->iRegistros + 1, 6));
+    $this->add(377, 391, Util::formatCnab('9', $this->total, 13, 2));
+    $this->add(392, 394, '060');
+    $this->add(395, 400, Util::formatCnab('9', $this->iRegistros + 2, 6));
 
     return $this;
   }

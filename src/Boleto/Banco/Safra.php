@@ -38,16 +38,8 @@ class Safra extends AbstractBoleto implements BoletoContract
     'DM' => '01',
     'NP' => '02',
     'NS' => '03',
-    'ME' => '04',
-    'REC' => '05',
-    'CT' => '06',
-    'CS' => '07',
-    'DS' => '08',
-    'LC' => '09',
-    'ND' => '13',
-    'CDA' => '15',
-    'EC' => '16',
-    'CPS' => '17',
+    'RC' => '05',
+    'DS' => '09',
   ];
 
   /**
@@ -148,6 +140,7 @@ class Safra extends AbstractBoleto implements BoletoContract
 
     return $this->campoLinhaDigitavel = sprintf('%s %s %s %s %s', $s1, $s2, $s3, $s4, $s5);
   }
+
   /**
    * Método para gerar o código da posição de 20 a 44
    *

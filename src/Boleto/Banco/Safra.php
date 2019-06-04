@@ -92,7 +92,7 @@ class Safra extends AbstractBoleto implements BoletoContract
    */
   protected function gerarNossoNumero()
   {
-    return $this->getNumero();
+    return Util::numberFormatGeral($this->getNumero(), 9);
   }
 
   /**

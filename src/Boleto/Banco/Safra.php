@@ -42,6 +42,20 @@ class Safra extends AbstractBoleto implements BoletoContract
     'DS' => '09',
   ];
 
+
+  /**
+   * Retorna o campo Agência/Beneficiário do boleto
+   *
+   * @return string
+   */
+  public function getAgenciaCodigoBeneficiario()
+  {
+    $agencia = $this->getAgenciaDv() !== null ? $this->getAgencia() . $this->getAgenciaDv() : $this->getAgencia();
+    $conta = $this->getContaDv() !== null ? $this->getConta() . $this->getContaDv() : $this->getConta();
+
+    return $agencia . ' / ' . $conta;
+  }
+
   /**
    * Seta dias para baixa automática
    *

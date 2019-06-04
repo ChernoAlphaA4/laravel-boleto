@@ -130,6 +130,7 @@ class Safra extends AbstractBoleto implements BoletoContract
       . $this->getMoeda()
       . Util::fatorVencimento($this->getDataVencimento())
       . Util::numberFormatGeral($this->getValor(), 10)
+      . Util::numberFormatGeral(7, 1)
       . Util::numberFormatGeral($this->getAgencia() . $this->getAgenciaDv(), 5)
       . Util::numberFormatGeral($this->getConta() . $this->getContaDv(), 9)
       . Util::numberFormatGeral($this->getNossoNumero(), 9)

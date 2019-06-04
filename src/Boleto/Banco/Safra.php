@@ -135,7 +135,7 @@ class Safra extends AbstractBoleto implements BoletoContract
       . Util::numberFormatGeral($this->getNossoNumero(), 9)
       . '2';
 
-    $resto = Util::modulo11($codigoCalcDAC, 2, 9, 0);
+    $resto = (int)Util::modulo11($codigoCalcDAC, 2, 9, 0);
     $dv = (in_array($resto, [0, 10, 1])) ? 1 : abs(11 - $resto);
 
     return $this->campoCodigoBarras = substr($codigo, 0, 4) . $dv . substr($codigo, 4);

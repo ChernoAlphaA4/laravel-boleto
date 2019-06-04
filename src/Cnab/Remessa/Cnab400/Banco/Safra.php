@@ -101,7 +101,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(1, 1, '1');
     $this->add(2, 3, Util::formatCnab('9', '02', 2));
     $this->add(4, 17, Util::formatCnab('9L', $this->getBeneficiario()->getDocumento(), 14));
-    $this->add(18, 31, Util::formatCnab('9', $this->getAgencia() . $this->getConta(), 14));
+    $this->add(18, 31, Util::formatCnab('9L', $this->getAgencia() . $this->getConta(), 14));
     $this->add(32, 37, Util::formatCnab('X', '', 6));
     $this->add(38, 62, Util::formatCnab('X', '', 25));
     $this->add(63, 71, Util::formatCnab('9', $boleto->getNossoNumero(), 9));

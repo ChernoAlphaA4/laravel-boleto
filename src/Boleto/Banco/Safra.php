@@ -57,6 +57,16 @@ class Safra extends AbstractBoleto implements BoletoContract
   }
 
   /**
+   * Retorna o campo aceite
+   *
+   * @return string
+   */
+  public function getAceite()
+  {
+    return is_numeric($this->aceite) ? ($this->aceite ? 'Sim' : 'Não') : $this->aceite;
+  }
+
+  /**
    * Seta dias para baixa automática
    *
    * @param int $baixaAutomatica

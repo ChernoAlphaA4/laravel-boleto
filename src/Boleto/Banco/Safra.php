@@ -157,7 +157,7 @@ class Safra extends AbstractBoleto implements BoletoContract
     $codigo = $this->getCodigoBarras();
 
 
-    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 1) . substr($codigo, 21, 4);
+    $s1 = substr($codigo, 0, 4) . substr($codigo, 19, 1) . substr($codigo, 20, 4);
 
     $s1 = $s1 . Util::modulo10($s1);
     $s1 = substr_replace($s1, '.', 5, 0);

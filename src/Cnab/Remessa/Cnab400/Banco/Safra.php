@@ -78,7 +78,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(91, 94, '');
     $this->add(95, 100, $this->getDataRemessa('dmy'));
     $this->add(101, 391, '');
-    $this->add(392, 394, Util::formatCnab('9', $this->getIdremessa(), 3));
+    $this->add(392, 394, Util::formatCnab('9', '060', 3));
     $this->add(395, 400, Util::formatCnab('9', '000001', 6));
 
     return $this;
@@ -109,7 +109,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(102, 102, Util::formatCnab('9', '0', 1));
     $this->add(103, 104, Util::formatCnab('9', '00', 2));
     $this->add(105, 105, Util::formatCnab('9', '', 1));
-    $this->add(106, 107, Util::formatCnab('9', '', 1));
+    $this->add(106, 107, Util::formatCnab('9', '00', 2));
     $this->add(108, 108, Util::formatCnab('9', '1', 1));
     $this->add(109, 110, Util::formatCnab('9', self::REGISTRO, 2));
     if ($boleto->getStatus() == $boleto::STATUS_BAIXA) {
@@ -165,7 +165,7 @@ class Safra extends AbstractRemessa implements RemessaContract
     $this->add(1, 1, '9');
     $this->add(2, 368, '');
     $this->add(369, 376, Util::formatCnab('9', $this->getCount() - 2, 8));
-    $this->add(377, 391, Util::formatCnab('9', $this->total, 13, 2));
+    $this->add(377, 391, Util::formatCnab('9', $this->total, 15, 2));
     $this->add(392, 394, '060');
     $this->add(395, 400, Util::formatCnab('9', $this->iRegistros + 2, 6));
 

@@ -62,7 +62,6 @@ class Caixa extends AbstractRemessa implements RemessaContract
    */
   protected $codigoBanco = BoletoContract::COD_BANCO_CEF;
 
-
   /**
    * Define as carteiras disponíveis para cada banco
    *

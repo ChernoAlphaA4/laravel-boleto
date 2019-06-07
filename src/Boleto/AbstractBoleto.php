@@ -149,7 +149,7 @@ abstract class AbstractBoleto implements BoletoContract
   /**
    * Codigo da multa para segmento R
    */
-  protected $codigoMulta;
+  protected $codigoMulta = 0;
 
   /**
    * Data da multa para segmento R

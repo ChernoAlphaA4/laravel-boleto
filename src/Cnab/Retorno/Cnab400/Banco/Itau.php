@@ -182,7 +182,6 @@ class Itau extends AbstractRetorno implements RetornoCnab400
       'alterados' => 0,
     ];
   }
-
   /**
    * @param array $header
    *

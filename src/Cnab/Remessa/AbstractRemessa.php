@@ -71,14 +71,14 @@ abstract class AbstractRemessa
      *
      * @var string
      */
-    protected $fimLinha = "\n";
+    protected $fimLinha = "\r\n";
 
     /**
      * Caracter de fim de arquivo
      *
      * @var null
      */
-    protected $fimArquivo = null;
+    protected $fimArquivo = "\r\n";
 
     /**
      * ID do arquivo remessa, sequencial.

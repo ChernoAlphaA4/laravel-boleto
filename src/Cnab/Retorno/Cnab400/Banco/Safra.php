@@ -237,7 +237,7 @@ class Safra extends AbstractRetorno implements RetornoCnab400
       ->setQuantidadeLiquidados((int)$this->totais['liquidados'])
       ->setQuantidadeBaixados((int)$this->totais['baixados'])
       ->setQuantidadeAlterados((int)$this->totais['alterados'])
-      ->setNumeroSequencialArquivo($this->rem(392, 394, $header));
+      ->setNumeroSequencialArquivo($this->rem(392, 394, $trailer));
 
     return true;
   }

@@ -176,8 +176,8 @@ class Safra extends AbstractRetorno implements RetornoCnab400
 
     $d
       ->setNossoNumero($this->rem(63, 71, $detalhe))//Pegando menos um caracter para remoção do digito verificador do nosso numero
-      ->setOcorrencia($this->rem(103, 104, $detalhe))
       ->setCarteira($this->rem(108, 108, $detalhe))
+      ->setOcorrencia($this->rem(109, 110, $detalhe))
       ->setDataOcorrencia($this->rem(111, 116, $detalhe))
       ->setNumeroDocumento($this->rem(117, 126, $detalhe))
       ->setNumeroControle($this->rem(38, 62, $detalhe))

@@ -193,7 +193,6 @@ class Safra extends AbstractRetorno implements RetornoCnab400
       ->setValorMora(Util::nFloat($this->rem(267, 279, $detalhe) / 100, 2, false))
       ->setValorMulta(Util::nFloat($this->rem(280, 292, $detalhe) / 100, 2, false));
 
-    $msgAdicional = str_split(sprintf('%08s', $this->rem(378, 385, $detalhe)), 2) + array_fill(0, 4, '');
     if ($d->hasOcorrencia('06', '07', '08', '10', '59')) {
       $this->totais['liquidados']++;
     } elseif ($d->hasOcorrencia('02', '64', '71', '73')) {
@@ -204,15 +203,9 @@ class Safra extends AbstractRetorno implements RetornoCnab400
       $this->totais['protestados']++;
     } elseif ($d->hasOcorrencia('14')) {
       $this->totais['alterados']++;
-    } elseif ($d->hasOcorrencia('03', '15', '16', '17', '18', '60')) {
+    } elseif ($d->hasOcorrencia('03')) {
       $this->totais['erros']++;
-      $error = Util::appendStrings(
-        array_get($this->rejeicoes, $msgAdicional[0], ''),
-        array_get($this->rejeicoes, $msgAdicional[1], ''),
-        array_get($this->rejeicoes, $msgAdicional[2], ''),
-        array_get($this->rejeicoes, $msgAdicional[3], '')
-      );
-      $d->setError($error);
+      $d->setError($this->rem(105, 107, $detalhe));
     }
 
     return true;

@@ -205,7 +205,7 @@ class Safra extends AbstractRetorno implements RetornoCnab400
       $this->totais['alterados']++;
     } elseif ($d->hasOcorrencia('03')) {
       $this->totais['erros']++;
-      $d->setError($this->rem(105, 107, $detalhe));
+      $d->setError($this->rejeicoes[(string)$this->rem(105, 107, $detalhe)]);
     }
 
     return true;

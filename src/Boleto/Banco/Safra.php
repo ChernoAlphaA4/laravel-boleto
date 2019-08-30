@@ -23,6 +23,8 @@ class Safra extends AbstractBoleto implements BoletoContract
   public $variaveis_adicionais = [
     'carteira_nome' => '',
   ];
+
+  public $localPagamento = 'Pagavél em qualquer Banco do sistema de compensação.';
   /**
    * Define as carteiras disponíveis para este banco
    *

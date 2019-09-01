@@ -55,7 +55,7 @@ class Safra extends AbstractBoleto implements BoletoContract
     $agencia = $this->getAgenciaDv() !== null ? $this->getAgencia() . $this->getAgenciaDv() : $this->getAgencia();
     $conta = $this->getContaDv() !== null ? $this->getConta() . $this->getContaDv() : $this->getConta();
 
-    return $agencia . ' / ' . $conta;
+    return $agencia . ' / ' . Util::numberFormatGeral($conta, 9);
   }
 
   /**

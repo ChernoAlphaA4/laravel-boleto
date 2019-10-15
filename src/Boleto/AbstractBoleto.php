@@ -1299,7 +1299,7 @@ abstract class AbstractBoleto implements BoletoContract
     if (!$this->getJuros() > 0) {
       return 0;
     }
-    return Util::percent($this->getValor(), $this->getJuros()) / 30;
+    return Util::percent($this->getValor(), $this->getJuros());
   }
 
   /**

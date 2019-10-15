@@ -1299,7 +1299,8 @@ abstract class AbstractBoleto implements BoletoContract
     if (!$this->getJuros() > 0) {
       return 0;
     }
-    return Util::percent($this->getValor(), $this->getJuros());
+    /** O valor do juros utilizado é sempre o valor diário já calculado anteriormente */
+    return $this->getJuros();
   }
 
   /**

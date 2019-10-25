@@ -339,6 +339,12 @@ abstract class AbstractBoleto implements BoletoContract
   protected $status = BoletoContract::STATUS_REGISTRO;
 
   /**
+   * Descrição do titulo
+   * @var string
+   */
+  protected $descricaoTitulo;
+
+  /**
    * Construtor
    *
    * @param array $params Parâmetros iniciais para construção do objeto
@@ -1478,6 +1484,24 @@ abstract class AbstractBoleto implements BoletoContract
   public function getMensagem4()
   {
     return $this->mensagem4;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getDescricaoTitulo()
+  {
+    return $this->descricaoTitulo;
+  }
+
+  /**
+   * @param string $descricaoTitulo
+   * @return AbstractBoleto
+   */
+  public function setDescricaoTitulo(string $descricaoTitulo): AbstractBoleto
+  {
+    $this->descricaoTitulo = $descricaoTitulo;
+    return $this;
   }
 
   /**

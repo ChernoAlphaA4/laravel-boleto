@@ -211,14 +211,14 @@ class PdfCarne extends AbstractPdf implements PdfContract
     $sacado_beneficiario = $this->formataSacado($sacado_beneficiario, 20);
     foreach ($sacado as $key => $value) {
       $this->SetFont($this->PadraoFont, 'B', $this->fdes);
-      $this->Cell(30, -$this->desc - 1, $this->_($value), 'LR');
+      $this->Cell(30, -$this->desc - 1, $this->_(ltrim($value)), 'LR');
       $this->Cell(3, -$this->desc - 1, $this->_('   '));
       if ($key < (count($sacado) - 1)) {
         $this->Ln(2);
       }
     }
     $this->SetFont($this->PadraoFont, '', $this->fdes);
-    $this->Cell(20, $this->desc, $this->_('                                       Sacador/Avalista'), 0);
+    $this->Cell(20, $this->desc, $this->_('                             Sacador/Avalista'), 0);
     $this->Cell(75, $this->desc,
       $this->_($this->boleto[$i]->getSacadorAvalista() ? $this->boleto[$i]->getSacadorAvalista()->getNomeDocumento() : ''),
       0);
@@ -242,7 +242,7 @@ class PdfCarne extends AbstractPdf implements PdfContract
     $this->Ln(3);
     foreach ($sacado_beneficiario as $value) {
       $this->SetFont($this->PadraoFont, 'B', $this->fdes);
-      $this->Cell(30, -$this->desc - 1, $this->_($value), 'LR');
+      $this->Cell(30, -$this->desc - 1, $this->_(ltrim($value)), 'LR');
       $this->Cell(3, -$this->desc - 1, $this->_('   '));
       $this->Ln(2);
     }
@@ -253,6 +253,7 @@ class PdfCarne extends AbstractPdf implements PdfContract
     $this->Cell(30, -$this->desc - 1, $this->_(''), 'TLR');
     $this->Cell(3, -$this->desc - 1, $this->_('   '));
     $this->Ln(-((count($sacado) * 3) - 3));
+    $this->SetXY($xOriginal, $yOriginal);
     return $this;
   }
 

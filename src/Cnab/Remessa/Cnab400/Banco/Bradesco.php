@@ -192,8 +192,19 @@ class Bradesco extends AbstractRemessa implements RemessaContract
   public function addBoleto(BoletoContract $boleto)
   {
     $this->boletos[] = $boleto;
-    $this->iniciaDetalhe();
+    $this->registroTipo1($boleto);
+    $this->registroTipo2($boleto);
+    return $this;
+  }
 
+  /**
+   * @param BoletoContract $boleto
+   * @return $this
+   * @throws \Exception
+   */
+  public function registroTipo1(BoletoContract $boleto){
+
+    $this->iniciaDetalhe();
     $this->add(1, 1, '1');
     $this->add(2, 6, '');
     $this->add(7, 7, '');
@@ -260,6 +271,23 @@ class Bradesco extends AbstractRemessa implements RemessaContract
     $this->add(327, 334, Util::formatCnab('9', Util::onlyNumbers($boleto->getPagador()->getCep()), 8));
     $this->add(335, 394, Util::formatCnab('X', $boleto->getSacadorAvalista() ? $boleto->getSacadorAvalista()->getNome() : '', 60));
     $this->add(395, 400, Util::formatCnab('9', $this->iRegistros + 1, 6));
+
+    return $this;
+  }
+
+  public function registroTipo2(BoletoContract $boleto){
+
+    $this->iniciaDetalhe();
+    $this->add(1, 1, '2');
+    $this->add(2, 81, '');
+    $this->add(82, 161, '');
+    $this->add(162, 241, '');
+    $this->add(242, 321, '');
+    $this->add(322, 327, $boleto->getDataDesconto2() > 0 ? $boleto->getDataDesconto2()->format('dmy') : '000000');
+    $this->add(328, 340, Util::formatCnab('9', $boleto->getDesconto2(), 13, 2));
+    $this->add(341, 346, $boleto->getDataDesconto3() > 0 ? $boleto->getDataDesconto3()->format('dmy') : '000000');
+    $this->add(347, 359, Util::formatCnab('9', $boleto->getDesconto3(), 13, 2));
+    $this->add(360, 400, '');
 
     return $this;
   }

@@ -141,10 +141,23 @@ abstract class AbstractBoleto implements BoletoContract
   protected $desconto2;
 
   /**
+   * Codigo do Desconto do segmento R
+   */
+  protected $codigoDesconto3 = 0;
+  /**
+   * Desconto do segmento R
+   */
+  protected $desconto3;
+  /**
    * Data do desconto do segmento R
    * @var /Carbon
    */
   protected $dataDesconto2;
+  /**
+   * Data do desconto do segmento R
+   * @var /Carbon
+   */
+  protected $dataDesconto3;
 
   /**
    * Codigo da multa para segmento R
@@ -1282,6 +1295,28 @@ abstract class AbstractBoleto implements BoletoContract
   public function setDesconto2($value)
   {
     $this->desconto2 = Util::nFloat($value, 2, false);
+    return $this;
+  }
+
+  /**
+   * Retorna o desconto para o segmento R
+   *
+   * @return mixed
+   */
+  public function getDesconto3()
+  {
+    return $this->desconto3;
+  }
+
+  /**
+   * Define o desconto para o segmento R
+   *
+   * @param $value - Valor
+   * @return mixed
+   */
+  public function setDesconto3($value)
+  {
+    $this->desconto3 = Util::nFloat($value, 2, false);
     return $this;
   }
 

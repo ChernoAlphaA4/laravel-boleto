@@ -676,6 +676,16 @@ abstract class AbstractBoleto implements BoletoContract
   }
 
   /**
+   * Retorna a data de limite de desconto no segmento R
+   *
+   * @return Carbon
+   */
+  public function getDataDesconto3()
+  {
+    return $this->dataDesconto3;
+  }
+
+  /**
    * Define a data do documento
    *
    * @param  Carbon $dataDocumento

@@ -642,6 +642,20 @@ abstract class AbstractBoleto implements BoletoContract
   }
 
   /**
+   * Define a data de limite de desconto no segmento R
+   *
+   * @param  Carbon $dataDesconto
+   *
+   * @return AbstractBoleto
+   */
+  public function setDataDesconto3(Carbon $dataDesconto)
+  {
+    $this->dataDesconto3 = $dataDesconto;
+
+    return $this;
+  }
+
+  /**
    * Retorna a data de limite de desconto
    *
    * @return Carbon
@@ -1273,6 +1287,18 @@ abstract class AbstractBoleto implements BoletoContract
   public function setCodigoDesconto2($d2)
   {
     $this->codigoDesconto2 = $d2;
+    return $this;
+  }
+
+  /**
+   * Define o codigo do desconto para o segmento R
+   *
+   * @param $d2 - Valor
+   * @return mixed
+   */
+  public function setCodigoDesconto3($d2)
+  {
+    $this->codigoDesconto3 = $d2;
     return $this;
   }
 

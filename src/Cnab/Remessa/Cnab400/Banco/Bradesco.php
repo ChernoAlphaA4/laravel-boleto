@@ -283,9 +283,9 @@ class Bradesco extends AbstractRemessa implements RemessaContract
     $this->add(82, 161, '');
     $this->add(162, 241, '');
     $this->add(242, 321, '');
-    $this->add(322, 327, $boleto->getDataDesconto2() > 0 ? $boleto->getDataDesconto2()->format('dmy') : '000000');
+    $this->add(322, 327, $boleto->getDesconto2() > 0 ? $boleto->getDataDesconto2()->format('dmy') : '000000');
     $this->add(328, 340, Util::formatCnab('9', $boleto->getDesconto2(), 13, 2));
-    $this->add(341, 346, $boleto->getDataDesconto3() > 0 ? $boleto->getDataDesconto3()->format('dmy') : '000000');
+    $this->add(341, 346, $boleto->getDesconto3() > 0 ? $boleto->getDataDesconto3()->format('dmy') : '000000');
     $this->add(347, 359, Util::formatCnab('9', $boleto->getDesconto3(), 13, 2));
     $this->add(360, 400, '');
 

@@ -3,8 +3,10 @@
 namespace Eduardokum\LaravelBoleto\Cnab\Retorno\Cnab400;
 
 use Carbon\Carbon;
+use Eduardokum\LaravelBoleto\Contracts\Pessoa as PessoaContract;
 use Eduardokum\LaravelBoleto\MagicTrait;
 use Eduardokum\LaravelBoleto\Contracts\Cnab\Retorno\Cnab400\Detalhe as DetalheContract;
+use Eduardokum\LaravelBoleto\Util;
 
 class Detalhe implements DetalheContract
 {
@@ -83,6 +85,10 @@ class Detalhe implements DetalheContract
    * @var string
    */
   protected $valorMulta;
+  /**
+   * @var PessoaContract
+   */
+  protected $pagador;
   /**
    * @var string
    */
@@ -538,4 +544,23 @@ class Detalhe implements DetalheContract
 
     return $this;
   }
+
+  /**
+   * @return PessoaContract
+   */
+  public function getPagador()
+  {
+    return $this->pagador;
+  }
+
+  /**
+   * @param PessoaContract $pagador
+   * @throws \Exception
+   */
+  public function setPagador($pagador)
+  {
+    Util::addPessoa($this->pagador, $pagador);
+    return $this;
+  }
+
 }

@@ -2,6 +2,7 @@
 
 namespace Eduardokum\LaravelBoleto\Boleto\Render;
 
+use Carbon\Carbon;
 use Eduardokum\LaravelBoleto\Contracts\Boleto\Boleto as BoletoContract;
 use Eduardokum\LaravelBoleto\Contracts\Boleto\Render\Pdf as PdfContract;
 use Eduardokum\LaravelBoleto\Util;
@@ -205,7 +206,7 @@ class PdfCarne extends AbstractPdf implements PdfContract
       $this->_(trim($enderecoPagador . ' - ' . substr($this->boleto[$i]->getPagador()->getBairro(), 0, 6) . ' ' . $this->boleto[$i]->getPagador()->getCepCidadeUf()),
         ' -'), 'BLR', 1);
     $sacado = $nomePagador;
-    $sacado_beneficiario = explode(':', strstr($descricaoDemonstrativo[0], 'Para: '))[1];
+    $sacado_beneficiario = $descricaoDemonstrativo[0];
     $descTitulo = $this->boleto[$i]->getDescricaoTitulo();
     $sacado = $this->formataSacado($sacado, 20);
     $sacado_beneficiario = $this->formataSacado($sacado_beneficiario, 20);
@@ -230,6 +231,7 @@ class PdfCarne extends AbstractPdf implements PdfContract
     $instrucoes = array_merge($this->boleto[$i]->getInstrucoes(), $descricaoDemonstrativo);
     $instrucoes = array_values(array_filter($instrucoes));
     if (count($instrucoes) > 0) {
+      $this->SetFont($this->PadraoFont, '', 3);
       $this->SetXY($xInstrucoes, $yInstrucoes);
       $this->Ln(1);
       $this->SetFont($this->PadraoFont, '', $this->fcel);
@@ -240,9 +242,9 @@ class PdfCarne extends AbstractPdf implements PdfContract
     $this->Cell(30, -$this->desc - 1, 'Para', 'LR');
     $this->Cell(3, -$this->desc - 1, $this->_('   '));
     $this->Ln(3);
-    foreach ($sacado_beneficiario as $value) {
+    foreach ($sacado_beneficiario as $item) {
       $this->SetFont($this->PadraoFont, 'B', $this->fdes);
-      $this->Cell(30, -$this->desc - 1, $this->_(ltrim($value)), 'LR');
+      $this->Cell(30, -$this->desc - 1, $this->_(ltrim(implode(' ',$item->person_name))), 'LR');
       $this->Cell(3, -$this->desc - 1, $this->_('   '));
       $this->Ln(2);
     }
@@ -265,7 +267,18 @@ class PdfCarne extends AbstractPdf implements PdfContract
    */
   private function formataSacado($sacado, $max)
   {
-    $words = explode(' ', $sacado);
+    if(is_array($sacado)) {
+      foreach ($sacado as &$item) {
+        $item->person_name = $this->processaString($item->person_name, $max);
+      }
+    } else {
+      $sacado = $this->processaString($sacado, $max);
+    }
+    return $sacado;
+  }
+
+  private function processaString($string, $max){
+    $words = explode(' ', $string);
 
     $maxLineLength = $max;
 
@@ -365,10 +378,42 @@ class PdfCarne extends AbstractPdf implements PdfContract
   private function listaLinhas($lista, $pulaLinha)
   {
     foreach ($lista as $d) {
-      $d = substr($d, 0, 110);
-      $pulaLinha -= 2;
-      $this->SetLeftMargin(53);
-      $this->Cell(0, 2, $this->_(preg_replace('/(%)/', '%$1', $d)), 0, 1);
+      if (is_array($d)) {
+        // Header
+        $this->SetLeftMargin(53);
+        $this->Cell(50, 3, ' Pessoa', 1);
+        $this->Cell(30, 3, $this->_('Serviço'), 1);
+        $this->Cell(10, 3, 'Parc.', 1);
+        $this->Cell(20, 3, 'Valor', 1);
+        $this->Ln();
+        // Data
+        foreach ($d as $row) {
+          $this->SetLeftMargin(53);
+          $this->Cell(50, 3, $this->_(implode(' ',$row->person_name)), 1);
+          $this->Cell(30, 3, $this->_($row->product), 1);
+          $this->Cell(10, 3, $this->_($row->instalment), 1);
+          $this->Cell(20, 3, 'R$ ' . number_format($row->amount, 2, ',', '.'), 1, 0, 'R');
+          $this->Ln();
+
+          if (property_exists($row, 'discounts_list')) {
+            if (!is_null($row->discounts_list)) {
+              foreach ($row->discounts_list as $discount) {
+                $this->SetLeftMargin(53);
+                $this->Cell(30, 3, $this->_(!is_null($discount->discount_date) ?
+                  '   Desc. até ' . Carbon::parse($discount->discount_date)->format('d/m/Y') : '   Desc. fixo'), 1);
+                $this->Cell(60, 3, $this->_($discount->discount_reason), 1);
+                $this->Cell(20, 3, 'R$ -' . number_format($discount->discount_amount, 2, ',', '.'), 1, 0, 'R');
+                $this->Ln();
+              }
+            }
+          }
+        }
+      } else {
+        $d = substr($d, 0, 110);
+        $pulaLinha -= 2;
+        $this->SetLeftMargin(53);
+        $this->Cell(0, 2, $this->_(preg_replace('/(%)/', '%$1', $d)), 0, 1);
+      }
     }
     $this->SetLeftMargin(20);
     return $pulaLinha;

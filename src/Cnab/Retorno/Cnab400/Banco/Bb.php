@@ -188,7 +188,8 @@ class Bb extends AbstractRetorno implements RetornoCnab400
       ->setConta($this->rem(32, 39, $header))
       ->setContaDv($this->rem(40, 40, $header))
       ->setConvenio($this->rem(150, 156, $header))
-      ->setData($this->rem(95, 100, $header));
+      ->setData($this->rem(95, 100, $header))
+      ->setNumeroSequencialArquivo($this->rem(101, 107, $header));
 
     return true;
   }

@@ -333,6 +333,7 @@ class Pdf extends AbstractPdf implements PdfContract
     $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getPagador()->getNomeDocumento()), 'LR', 1);
     $this->Cell(0, $this->cell, $this->_(trim($this->boleto[$i]->getPagador()->getEndereco() . ' - ' . $this->boleto[$i]->getPagador()->getBairro()), ' -'), 'LR', 1);
     $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getPagador()->getCepCidadeUf()), 'LR', 1);
+    $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getCursoTurma()), 'LR', 1);
 
     $this->SetFont($this->PadraoFont, '', $this->fdes);
     $this->Cell(120, $this->cell, $this->_(''), 'BLR');

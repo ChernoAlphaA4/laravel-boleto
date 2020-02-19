@@ -358,6 +358,12 @@ abstract class AbstractBoleto implements BoletoContract
   protected $descricaoTitulo;
 
   /**
+   * Descrição do curso e turma
+   * @var string
+   */
+  protected $curso_turma;
+
+  /**
    * Construtor
    *
    * @param array $params Parâmetros iniciais para construção do objeto
@@ -1572,6 +1578,24 @@ abstract class AbstractBoleto implements BoletoContract
   public function setDescricaoTitulo(string $descricaoTitulo): AbstractBoleto
   {
     $this->descricaoTitulo = $descricaoTitulo;
+    return $this;
+  }
+
+  /**
+   * @return string
+   */
+  public function getCursoTurma(): string
+  {
+    return $this->curso_turma;
+  }
+
+  /**
+   * @param string $curso_turma
+   * @return AbstractBoleto
+   */
+  public function setCursoTurma(string $curso_turma): AbstractBoleto
+  {
+    $this->curso_turma = $curso_turma;
     return $this;
   }
 

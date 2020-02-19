@@ -221,6 +221,8 @@ interface Boleto
    */
   public function getDescricaoDemonstrativo();
 
+  public function getCursoTurma();
+
   /**
    * @return mixed
    */

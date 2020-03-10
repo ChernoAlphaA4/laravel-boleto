@@ -215,6 +215,16 @@ class Pdf extends AbstractPdf implements PdfContract
    */
   protected function Bottom($i)
   {
+    $beneficiary = '';
+    $infos = $this->boleto[$i]->getDescricaoDemonstrativo();
+    foreach ($infos as $array) {
+      if (is_array($array)){
+        foreach ($array as $row)
+        {
+          $beneficiary .= $beneficiary == '' ? $row->person_name : ' - ' . $row->person_name;
+        }
+      }
+    }
     $this->Image($this->boleto[$i]->getLogoBanco(), 20, ($this->GetY() - 2), 28);
     $this->Cell(29, 6, '', 'B');
     $this->SetFont($this->PadraoFont, 'B', 13);
@@ -333,6 +343,7 @@ class Pdf extends AbstractPdf implements PdfContract
     $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getPagador()->getNomeDocumento()), 'LR', 1);
     $this->Cell(0, $this->cell, $this->_(trim($this->boleto[$i]->getPagador()->getEndereco() . ' - ' . $this->boleto[$i]->getPagador()->getBairro()), ' -'), 'LR', 1);
     $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getPagador()->getCepCidadeUf()), 'LR', 1);
+    $this->Cell(0, $this->cell, $beneficiary, 'LR', 1);
     $this->Cell(0, $this->cell, $this->_($this->boleto[$i]->getCursoTurma()), 'LR', 1);
 
     $this->SetFont($this->PadraoFont, '', $this->fdes);

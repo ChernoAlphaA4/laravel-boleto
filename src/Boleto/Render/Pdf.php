@@ -506,7 +506,7 @@ class Pdf extends AbstractPdf implements PdfContract
         $this->Ln();
         // Data
         foreach ($d as $row) {
-          $this->Cell(70, 4, $this->_($row->person_name), 1);
+          $this->Cell(70, 4, $this->_($row->person_name . (!is_null($row->person_enrol_number) ? ' ('.$row->person_enrol_number.')' : '')), 1);
           $this->Cell(60, 4, $this->_($row->product), 1);
           $this->Cell(20, 4, $this->_($row->instalment), 1);
           $this->Cell(20, 4, 'R$ ' . number_format($row->amount, 2, ',', '.'), 1, 0, 'R');

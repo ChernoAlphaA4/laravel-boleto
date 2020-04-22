@@ -217,12 +217,13 @@ class Pdf extends AbstractPdf implements PdfContract
   {
     $beneficiary = '';
     $infos = $this->boleto[$i]->getDescricaoDemonstrativo();
-    $infos = collect($infos)->unique()->toArray();
     foreach ($infos as $array) {
       if (is_array($array)){
-        foreach ($array as $row)
+        /** @var $new_array - Evita beneficiários duplicados */
+        $new_array = collect($array)->pluck('person_name')->unique()->toArray();
+        foreach ($new_array as $row)
         {
-          $beneficiary .= $beneficiary == '' ? $row->person_name : ' - ' . $row->person_name;
+          $beneficiary .= $beneficiary == '' ? $row : ' - ' . $row;
         }
       }
     }

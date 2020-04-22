@@ -217,6 +217,7 @@ class Pdf extends AbstractPdf implements PdfContract
   {
     $beneficiary = '';
     $infos = $this->boleto[$i]->getDescricaoDemonstrativo();
+    $infos = collect($infos)->unique()->toArray();
     foreach ($infos as $array) {
       if (is_array($array)){
         foreach ($array as $row)

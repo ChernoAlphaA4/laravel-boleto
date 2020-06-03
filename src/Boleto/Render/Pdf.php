@@ -523,6 +523,16 @@ class Pdf extends AbstractPdf implements PdfContract
               }
             }
           }
+          if (property_exists($row, 'additions_list')) {
+            if (!is_null($row->additions_list)) {
+              foreach ($row->additions_list as $addition) {
+                $this->Cell(40, 4, 'Acrescimo', 1);
+                $this->Cell(110, 4, $this->_($addition->addition_name), 1);
+                $this->Cell(20, 4, 'R$ + ' . number_format($addition->addition_amount, 2, ',', '.'), 1, 0, 'R');
+                $this->Ln();
+              }
+            }
+          }
         }
       } else {
         $pulaLinha -= 2;

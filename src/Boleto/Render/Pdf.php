@@ -219,6 +219,9 @@ class Pdf extends AbstractPdf implements PdfContract
     $infos = $this->boleto[$i]->getDescricaoDemonstrativo();
     foreach ($infos as $array) {
       if (is_array($array)){
+        $array = collect($array)->each(function (&$item){
+          $item->person_name = $item->person_name . (property_exists($item,'person_enrol_number') && !is_null($item->person_enrol_number) ? ' (' . $item->person_enrol_number . ')' : '');
+        });
         /** @var $new_array - Evita beneficiários duplicados */
         $new_array = collect($array)->pluck('person_name')->unique()->toArray();
         foreach ($new_array as $row)
@@ -506,7 +509,7 @@ class Pdf extends AbstractPdf implements PdfContract
         $this->Ln();
         // Data
         foreach ($d as $row) {
-          $this->Cell(70, 4, $this->_($row->person_name), 1);
+          $this->Cell(70, 4, $this->_($row->person_name . (property_exists($row,'person_enrol_number') && !is_null($row->person_enrol_number) ? ' ('.$row->person_enrol_number.')' : '')), 1);
           $this->Cell(60, 4, $this->_($row->product), 1);
           $this->Cell(20, 4, $this->_($row->instalment), 1);
           $this->Cell(20, 4, 'R$ ' . number_format($row->amount, 2, ',', '.'), 1, 0, 'R');

@@ -520,6 +520,7 @@ class Pdf extends AbstractPdf implements PdfContract
               foreach ($row->discounts_list as $discount) {
                 $this->Cell(40, 4, $this->_(!is_null($discount->discount_date) ?
                   '   Desconto até ' . Carbon::parse($discount->discount_date)->format('d/m/Y') : '   Desconto fixo'), 1);
+                $discount->discount_reason = str_replace('%', '%%', $discount->discount_reason);
                 $this->Cell(110, 4, $this->_($discount->discount_reason), 1);
                 $this->Cell(20, 4, 'R$ -' . number_format($discount->discount_amount, 2, ',', '.'), 1, 0, 'R');
                 $this->Ln();

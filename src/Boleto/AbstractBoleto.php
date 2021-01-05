@@ -1270,7 +1270,7 @@ abstract class AbstractBoleto implements BoletoContract
    */
   public function setDataMulta(Carbon $data)
   {
-    $this->codigoMulta = $data;
+    $this->dataMulta = $data;
     return $this;
   }
 

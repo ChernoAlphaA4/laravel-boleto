@@ -127,6 +127,13 @@ abstract class AbstractBoleto implements BoletoContract
   protected $dataDesconto;
 
   /**
+   * Data de tolerância dos juros
+   *
+   * @var Carbon
+   */
+  protected $dataJuros;
+
+  /**
    * Codigo do Desconto do segmento P
    */
   protected $codigoDesconto = 0;
@@ -1201,6 +1208,18 @@ abstract class AbstractBoleto implements BoletoContract
     return $this;
   }
 
+  public function setDataJuros(Carbon $dataJuros)
+  {
+    $this->dataJuros = $dataJuros;
+
+    return $this;
+  }
+
+  public function getDataJuros(){
+    return $this->dataJuros;
+  }
+
+
   /**
    * Retorna % juros
    *
@@ -1589,6 +1608,8 @@ abstract class AbstractBoleto implements BoletoContract
     return $this->curso_turma;
   }
 
+
+
   /**
    * @param string $curso_turma
    * @return AbstractBoleto
@@ -1642,6 +1663,8 @@ abstract class AbstractBoleto implements BoletoContract
   {
     return $this->getNossoNumero();
   }
+
+
 
   /**
    * Método onde o Boleto deverá gerar o Nosso Número.

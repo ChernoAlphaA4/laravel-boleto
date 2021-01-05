@@ -228,7 +228,7 @@ class Itau extends AbstractRetorno implements RetornoCnab400
       ->setValorIOF(Util::nFloat($this->rem(215, 227, $detalhe) / 100, 2, false))
       ->setValorAbatimento(Util::nFloat($this->rem(228, 240, $detalhe) / 100, 2, false))
       ->setValorDesconto(Util::nFloat($this->rem(241, 253, $detalhe) / 100, 2, false))
-      ->setValorRecebido(Util::nFloat($this->rem(254, 266, $detalhe) / 100, 2, false))
+      ->setValorRecebido(Util::nFloat($this->rem(254, 266, $detalhe) / 100, 2, false) + $d->getValorTarifa())
       ->setValorMora(Util::nFloat($this->rem(267, 279, $detalhe) / 100, 2, false))
       ->setValorMulta(Util::nFloat($this->rem(280, 292, $detalhe) / 100, 2, false));
 

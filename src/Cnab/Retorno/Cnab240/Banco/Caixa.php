@@ -507,7 +507,16 @@ class Caixa extends AbstractRetorno implements RetornoCnab240
         $this->totais['protestados']++;
       } elseif ($d->hasOcorrencia('28')) {
         $this->totais['tarifas']++;
-        $d->setMensagensAdicionais($msgAdicional);
+        $ocorrencia = Util::appendStrings(
+          $d->getOcorrenciaDescricao(),
+          array_get($this->tipo_tarifas, $msgAdicional[0], ''),
+          array_get($this->tipo_tarifas, $msgAdicional[1], ''),
+          array_get($this->tipo_tarifas, $msgAdicional[2], ''),
+          array_get($this->tipo_tarifas, $msgAdicional[3], ''),
+          array_get($this->tipo_tarifas, $msgAdicional[4], '')
+        );
+        $d->setOcorrenciaDescricao($ocorrencia);
+//        $d->setMensagensAdicionais($msgAdicional);
       } elseif ($d->hasOcorrencia('36', '45', '61', '62')) {
         $this->totais['alterados']++;
 //                $d->setOcorrenciaTipo($d::OCORRENCIA_ALTERACAO);

@@ -185,7 +185,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(109, 109, Util::formatCnab('9', $boleto->getAceite(), 1));
     $this->add(110, 117, $boleto->getDataDocumento()->format('dmY'));
     $this->add(118, 118, $boleto->getJuros() ? '1' : '3'); //'1' = Valor por Dia, '3' = Isento
-    $this->add(119, 126, $boleto->getDataVencimento()->format('dmY'));
+    $this->add(119, 126, $boleto->getDataJuros()->format('dmY'));
     $this->add(127, 141, Util::formatCnab('9', $boleto->getMoraDia(), 15, 2)); //Valor da mora/dia ou Taxa mensal
     $this->add(142, 142, $boleto->getDesconto() > 0 ? '1' : '0'); // 0 = Sem Desconto, 1 = Valor Fixo até a data informada, 2 = Percentual até a data informada
     $this->add(143, 150, $boleto->getDesconto() > 0 ? $boleto->getDataDesconto()->format('dmY') : '00000000');
@@ -290,7 +290,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(43, 50, $boleto->getDesconto3() > 0 ? $boleto->getDataDesconto3()->format('dmY') : '00000000');
     $this->add(51, 65, $boleto->getDesconto3() > 0 ? Util::formatCnab('9', $boleto->getDesconto3(), 15, 2) : '000000000000000');
     $this->add(66, 66, $boleto->getCodigoMulta()); //0 = ISENTO | 1 = VALOR FIXO | 2 = PERCENTUAL
-    $this->add(67, 74, $boleto->getDataVencimento()->format('dmY'));
+    $this->add(67, 74, $boleto->getDataMulta()->format('dmY'));
     $this->add(75, 89, Util::formatCnab('9', $boleto->getMulta() > 0, 15, 2));  //2,20 = 0000000000220
     $this->add(90, 240, '');
 

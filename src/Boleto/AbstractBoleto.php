@@ -1184,7 +1184,7 @@ abstract class AbstractBoleto implements BoletoContract
    */
   public function getMulta()
   {
-    return $this->multa;
+    return Util::nFloat($this->multa, 2, false);
   }
 
   /**

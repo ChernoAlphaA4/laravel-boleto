@@ -67,7 +67,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
    *
    * @var array
    */
-  protected $carteiras = ['RG'];
+  protected $carteiras = ['RG', '14'];
 
   /**
    * Codigo do cliente junto ao banco.
@@ -317,8 +317,8 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(33, 52, Util::formatCnab('9', 0, 20));
     $this->add(53, 57, Util::formatCnab('9', $this->getAgencia(), 5));
     $this->add(58, 58, CalculoDV::cefAgencia($this->getAgencia()));
-    $this->add(59, 64, Util::formatCnab('9', $this->getCodigoCliente(), 6));
-    $this->add(65, 72, '00000000');
+    $this->add(59, 65, Util::formatCnab('9', $this->getCodigoCliente(), 7));
+    $this->add(66, 72, '00000000');
     $this->add(73, 102, Util::formatCnab('X', $this->getBeneficiario()->getNome(), 30));
     $this->add(103, 132, Util::formatCnab('X', 'CAIXA ECONOMICA FEDERAL', 30));
     $this->add(133, 142, '');
@@ -326,7 +326,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(144, 151, $this->getDataRemessa('dmY'));
     $this->add(152, 157, date('His'));
     $this->add(158, 163, Util::formatCnab('9', $this->getIdremessa(), 6));
-    $this->add(164, 166, '050');
+    $this->add(164, 166, '107');
     $this->add(167, 171, '00000');
     $this->add(172, 191, '');
     $this->add(192, 211, '');

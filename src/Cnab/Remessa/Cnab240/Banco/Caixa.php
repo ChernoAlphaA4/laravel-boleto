@@ -318,7 +318,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(53, 57, Util::formatCnab('9', $this->getAgencia(), 5));
     $this->add(58, 58, CalculoDV::cefAgencia($this->getAgencia()));
     $this->add(59, 65, Util::formatCnab('9', $this->getCodigoCliente(), 7));
-    $this->add(66, 72, '00000000');
+    $this->add(66, 72, '0000000');
     $this->add(73, 102, Util::formatCnab('X', $this->getBeneficiario()->getNome(), 30));
     $this->add(103, 132, Util::formatCnab('X', 'CAIXA ECONOMICA FEDERAL', 30));
     $this->add(133, 142, '');

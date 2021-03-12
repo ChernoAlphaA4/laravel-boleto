@@ -405,7 +405,7 @@ class Caixa extends AbstractRetorno implements RetornoCnab240
       ->setNumeroInscricao($this->rem(19, 32, $header))
       ->setAgencia($this->rem(53, 57, $header))
       ->setAgenciaDv($this->rem(58, 58, $header))
-      ->setCodigoCedente($this->rem(59, 64, $header))
+      ->setCodigoCedente($this->rem(59, 65, $header))
       ->setNomeEmpresa($this->rem(73, 102, $header))
       ->setNomeBanco($this->rem(103, 132, $header))
       ->setCodigoRemessaRetorno($this->rem(143, 143, $header))

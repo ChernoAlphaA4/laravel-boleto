@@ -360,7 +360,7 @@ class Caixa extends AbstractRemessa implements RemessaContract
     $this->add(41, 53, Util::formatCnab('9', 0, 13));
     $this->add(54, 58, Util::formatCnab('9', $this->getAgencia(), 5));
     $this->add(59, 59, CalculoDV::cefAgencia($this->getAgencia()));
-    $this->add(60, 65, Util::formatCnab('9', Util::onlyNumbers($this->getCodigoCliente()), 6));
+    $this->add(60, 65, Util::formatCnab('9', (int)$this->getCodigoCliente() < 1000000 ? Util::onlyNumbers($this->getCodigoCliente()) : 0, 6));
     $this->add(66, 72, '0000000');
     $this->add(73, 73, '0');
     $this->add(74, 103, Util::formatCnab('X', $this->getBeneficiario()->getNome(), 30));

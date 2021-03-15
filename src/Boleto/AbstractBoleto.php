@@ -1227,7 +1227,7 @@ abstract class AbstractBoleto implements BoletoContract
    */
   public function getJuros()
   {
-    return $this->juros;
+    return Util::nFloat($this->juros, 2, false);
   }
 
   /**

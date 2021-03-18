@@ -228,9 +228,9 @@ class Caixa extends AbstractBoleto implements BoletoContract
     }
 
     $nossoNumero = Util::numberFormatGeral($this->gerarNossoNumero(), 17);
-    $beneficiario = Util::numberFormatGeral($this->getCodigoCliente(), 6);
+    $beneficiario = Util::numberFormatGeral($this->getCodigoCliente(), (int)$this->getCodigoCliente() > 1100000 ? 7 : 6);
 
-    $campoLivre = $beneficiario . Util::modulo11($beneficiario);
+    $campoLivre = (int)$beneficiario > 1100000 ? $beneficiario : ($beneficiario . Util::modulo11($beneficiario));
     $campoLivre .= substr($nossoNumero, 2, 3);
     $campoLivre .= substr($nossoNumero, 0, 1);
     $campoLivre .= substr($nossoNumero, 5, 3);

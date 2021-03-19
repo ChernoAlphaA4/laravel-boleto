@@ -211,4 +211,19 @@ class Sicredi extends AbstractBoleto implements BoletoContract
             'contaCorrente' => substr($campoLivre, 17, 5),
         ];
     }
+
+  public function alterarDataDeVencimento()
+  {
+    // TODO: Implement alterarDataDeVencimento() method.
+  }
+
+  public function comandarInstrucao($instrucao)
+  {
+    // TODO: Implement comandarInstrucao() method.
+  }
+
+  public function getComando()
+  {
+    // TODO: Implement getComando() method.
+  }
 }

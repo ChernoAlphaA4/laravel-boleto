@@ -150,11 +150,7 @@ class Sicredi extends AbstractBoleto implements BoletoContract
      */
     protected function gerarNossoNumero()
     {
-        $ano = $this->getDataDocumento()->format('y');
-        $byte = $this->getByte();
-        $numero_boleto = Util::numberFormatGeral($this->getNumero(), 5);
-        $nossoNumero = $ano . $byte . $numero_boleto
-            . CalculoDV::sicrediNossoNumero($this->getAgencia(), $this->getPosto(), $this->getConta(), $ano, $byte, $numero_boleto);
+        $nossoNumero = Util::numberFormatGeral($this->getNumero(), 9);
         return $nossoNumero;
     }
     /**
@@ -180,7 +176,7 @@ class Sicredi extends AbstractBoleto implements BoletoContract
 
         $campoLivre = $this->isComRegistro() ? '1' : '3';
         $campoLivre .= Util::numberFormatGeral($this->getCarteira(), 1);
-        $campoLivre .= $this->getNossoNumero();
+        $campoLivre .= Util::numberFormatGeral($this->getNumero(), 9);
         $campoLivre .= Util::numberFormatGeral($this->getAgencia(), 4);
         $campoLivre .= Util::numberFormatGeral($this->getPosto(), 2);
         $campoLivre .= Util::numberFormatGeral($this->getConta(), 5);

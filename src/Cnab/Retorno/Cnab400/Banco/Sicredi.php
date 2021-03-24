@@ -210,7 +210,8 @@ class Sicredi extends AbstractRetorno implements RetornoCnab400
             ->setServico($this->rem(12, 26, $header))
             ->setConta($this->rem(27, 31, $header))
             ->setCodigoCliente($this->rem(32, 45, $header))
-            ->setData($this->rem(95, 102, $header), 'Ymd');
+            ->setData($this->rem(95, 102, $header), 'Ymd')
+        ->setNumeroSequencialArquivo($this->rem(111, 117, $header));
 
         return true;
     }
